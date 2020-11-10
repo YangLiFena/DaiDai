@@ -74,20 +74,6 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // canvas: function (str, money) {
-  //   console.log(str)
-  //   const ctx = wx.createCanvasContext(str);
-  //   ctx.moveTo(2, 2);
-  //   ctx.lineTo(50, 0);
-  //   ctx.lineTo(48, 30);
-  //   ctx.lineTo(0, 28);
-  //   ctx.setFillStyle("#FE0000");
-  //   ctx.fill();
-  //   ctx.setFillStyle("white");
-  //   ctx.setFontSize(15);
-  //   ctx.fillText("￥ " + money, 10, 20);
-  //   ctx.draw();
-  // },
   personal: function () {
     this.setData({
       personal: false

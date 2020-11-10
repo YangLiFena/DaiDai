@@ -7,7 +7,11 @@ Page({
   data: {
 
   },
-
+  jmpHomePage:function(options){
+      wx.switchTab({
+        url: '../mine/mine'
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

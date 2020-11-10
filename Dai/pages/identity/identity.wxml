@@ -32,7 +32,7 @@
     </view>
 
     <view class="buttonView">
-      <button form-type="submit" class="submit">提交审核</button>
+      <button form-type="submit" class="submit" bindtap="jmpHomePage">提交审核</button>
     </view>
   </view>
 </form>

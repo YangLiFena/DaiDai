@@ -205,42 +205,6 @@
   margin-right: 15rpx;
 }
 
-/*.scroll_view_horizotal{
-    height: 50px;
-    background-color: whitesmoke;
-     white-space: nowrap;
-   display: flex;
-}
-.title{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15rpx;
-  padding-bottom: 15rpx;
-  border-bottom: 5px solid gainsboro;
-}
-.title view{
-  width: 200rpx;
-  height: 50rpx;
-  text-align: center;
-}
-.quanbu{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 10rpx;
-  padding-left: 20rpx;
-
-}
-
-
-.title view text{
-  font-size: 28rpx;
-  padding-bottom:15rpx;
-  padding-left:20rpx;
-  padding-right:20rpx;
-}*/
-
 .scroll_view_horizotal{
     height: 65rpx;
     background-color: whitesmoke;
@@ -256,7 +220,7 @@
 }
 .item{
   height: 50rpx;
-   width: 200rpx;
+   width: 125rpx;
    display: inline-block;
      font-size: 28rpx;
   padding-bottom:7rpx;
