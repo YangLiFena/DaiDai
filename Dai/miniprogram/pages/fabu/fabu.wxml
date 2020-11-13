@@ -1,0 +1,18 @@
+<form bindsubmit="send">
+  <view>  
+    <view class="zi1">
+      <text class="tishi">
+        请选择将要发布的任务类型\n
+      </text>
+    </view>
+    <view class="buttonView">
+      <button form-type="submit" class="submit" bindtap="jmpDaiFanPage">带饭</button>
+    </view>
+    <view class="buttonView1">
+      <button form-type="submit" class="submit" bindtap="jmpDaiRenPage">带人</button>
+    </view>
+    <view class="buttonView2">
+      <button form-type="submit" class="submit" bindtap="jmpDaiDYPage">代打印</button>
+    </view>
+  </view>
+</form>
