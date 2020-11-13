@@ -1,14 +1,16 @@
 {
-  "miniprogramRoot": "miniprogram/",
-  "cloudfunctionRoot": "cloudfunctions/",
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
   "setting": {
     "urlCheck": true,
     "es6": true,
-    "enhance": true,
+    "enhance": false,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
-    "newFeature": true,
+    "newFeature": false,
     "coverView": true,
     "nodeModules": false,
     "autoAudits": false,
@@ -30,39 +32,39 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "enableEngineNative": false,
+    "minifyWXSS": true
   },
-  "appid": "wxfeb8e7ad8ae25436",
-  "projectname": "SEDai",
-  "libVersion": "2.8.1",
+  "compileType": "miniprogram",
+  "libVersion": "2.14.0",
+  "appid": "wxc94b35056563c117",
+  "projectname": "%E5%B8%A6%E4%BB%A3",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
       "list": []
     },
+    "plugin": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
     "miniprogram": {
-      "current": 0,
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide"
-        }
-      ]
+      "list": []
     }
   }
 }

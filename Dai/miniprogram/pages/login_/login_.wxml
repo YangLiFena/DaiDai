@@ -1,0 +1,15 @@
+
+<view class="contianer" wx:if="{{isHide}}">
+    <view wx:if="{{canIUse}}" >
+      <image class="avatar" src="/photo/logo.png"></image>
+      <view class="txt">
+      <text class="header">时间，不在于你拥有多少
+                                而在于你怎样掌握
+      </text>
+      </view>
+      <image class="avatar_1" src="/photo/s_logo.png"></image>
+        <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+            授权登录
+        </button>
+    </view>
+</view>
