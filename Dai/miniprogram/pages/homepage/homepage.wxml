@@ -1,6 +1,6 @@
 <!--轮播图 开始-->
 
-<view class="homepage_wiper">
+<view>
   <swiper autoplay indicator-dots circular style="height:500rpx" >
     <swiper-item>
       <image src='/photo/1.png' style="width:100%;height:500rpx"></image>
@@ -14,11 +14,14 @@
 
 <!--导航 开始-->
 <view class="home_cate">
-  <navigator 
-  wx:for="{{catelist}}"
-  wx:key="id"
-  >
-  <image mode="widthFix" src="{{item.image_src}}"></image>
-  </navigator>
+  <view class="img" bindtap="jmpFaBuPage" >
+    <image mode="widthFix"  src="/photo/tag1.png"></image>      
+  </view>
+  <view class="img1" bindtap="jmpFaBuPage" >
+    <image mode="widthFix"  src="/photo/tag2.png"></image>      
+  </view>
+  <view class="img2" bindtap="jmpFaBuPage" >
+    <image mode="widthFix"  src="/photo/tag3.png"></image>      
+  </view>
 </view>
 <!--导航 开始-->

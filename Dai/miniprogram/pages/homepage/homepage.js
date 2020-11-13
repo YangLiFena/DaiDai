@@ -15,6 +15,11 @@ Page({
       }
     ]
   },
-  
+  jmpFaBuPage:function(options){ 
+    console.log(1);
+    wx.navigateTo({
+      url: '../fabu/fabu'
+    })
+  }
 })
 
