@@ -1,124 +1,67 @@
-// pages/identity/identity.js
-const db = wx.cloud.database()
 Page({
-  data: {
-    animation1: {},
-    "hiddent": true,
-    "imageHidden":true,
-    name:'',
-    sid:'',
-    shenfenHidden:false,
-    studentCardHidden:false
-  },
-  nameInput:function(e)
-  {
+  bindDateChange:function(e){
     this.setData({
-      name: e.detail.value
+      date:e.detail.value
     });
   },
-  sid:function(e)
-  {
+  bindTimeChange:function(e){
     this.setData({
-      sid: e.detail.value
+      time:e.detail.value
     });
   },
-  addStudent:function(){
-      db.collection('StudentCard').add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        name:this.data.name,
-        sid:this.data.sid
-      },
-      success: function(res) {
-        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-        console.log(res)
-      }
-    })
+  data:{
+    input1:null,
+    input2:null,
+    input3:null,
+    input4:null,
+    input5:null,
+    input6:null,
+    input8:null
   },
-  jmpHomePage:function(options){ 
-    //console.log(this.data.name);
-    this.addStudent();
-    wx.switchTab({
-      url: '../mine/mine'
-    })
-  },
- 
-  //输入错误提示
-  warning: function () {
-    var that = this;
-    //动画
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: "ease-in-out",
-      delay: 0
+  input1:function(e){
+    this.setData({
+      input1:e.detail.value
     });
-    //显示
-    that.setData({ "hiddent": false })
-    //开始动画，导入动画
-    animation.translateY(-60).step();
-    that.setData({ "animation1": animation.export() })
-    setTimeout(function () {
-      that.setData({ "hiddent": true })
-      animation.translateY(0).step();
-      that.setData({ "animation1": animation.export() })
-    }, 1500)
   },
-  fail: function (res) {
-    console.log(res.errMsg)
+  input2:function(e){
+    this.setData({
+      input2:e.detail.value
+    });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  input3:function(e){
+    this.setData({
+      input3:e.detail.value
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  input4:function(e){
+    this.setData({
+      input4:e.detail.value
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  input5:function(e){
+    this.setData({
+      input5:e.detail.value
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  input6:function(e){
+    this.setData({
+      input6:e.detail.value
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  input8:function(e){
+    this.setData({
+      input8:e.detail.value
+    });
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
-})
+  success:function(options){
+    console.log("出发地："+this.data.input1+"\n"+"目的地："+this.data.input2+"\n"+"出行日期："+this.data.date+"\n"+"出发时间点："+this.data.time+"\n"+"预约时间："+"\n"+"开始时间："+this.data.input5+" "+"结束时间："+this.data.input6)
+    wx.navigateTo({
+        url: '../fabu/fabu',
+      })
+    wx.showToast({
+      title: '发布成功',
+      icon: 'success',
+      duration: 2000//持续的时间
+    })
+    },
+  })
