@@ -1,26 +1,26 @@
 <view class="itemView">
     <input class="input1" type="text" placeholder="请输入菜品名称" 
-    bindinput="Input"/>
+    bindinput="input1"/>
   </view>
   <view class="itemView">
     <input class="input2" type="text" placeholder="请输入购买菜品地点" 
-    bindinput="Input"/>
+    bindinput="input2"/>
   </view>
   <view class="itemView">
     <input class="input3" type="text" placeholder="请输入目的地" 
-    bindinput="Input"/>
+    bindinput="input3"/>
   </view>
   <view class="itemView">
     <input class="input4" type="text" placeholder="请选择任务预约有效时间" 
-    bindinput="Input"/>
+    bindinput="input4"/>
   </view>
   <view class="itemView">
     <input class="input5" type="number" placeholder="开始时间" 
-    bindinput="Input"/>
+    bindinput="input5"/>
   </view>
   <view class="itemView">
     <input class="input6" type="number" placeholder="结束时间" 
-    bindinput="Input"/>
+    bindinput="input6"/>
   </view>
   <view>
     <text class="input7">至</text>
