@@ -32,7 +32,7 @@
     "packNpmManually": false,
     "packNpmRelationList": []
   },
-  "appid": "wxfeb8e7ad8ae25436",
+  "appid": "wx4184fe0dc5886089",
   "projectname": "SEDai",
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
@@ -40,22 +40,18 @@
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
       "list": []
     },
     "miniprogram": {
-      "current": 0,
       "list": [
         {
           "id": -1,
