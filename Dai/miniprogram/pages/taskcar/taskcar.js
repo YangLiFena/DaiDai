@@ -90,6 +90,10 @@ Page({
         this.setData({ quanbu: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
         this.getMsg('getUserOrderList', 0);
         break;
+      case "daiban":
+        this.setData({ daiwancheng: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
+        this.getMsg('getStatusOrderList',  3);
+        break;
       case "send":
         this.setData({ send: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
         this.getMsg('getUserSendOrderList',  0);
@@ -97,14 +101,6 @@ Page({
       case "end":
         this.setData({ end: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
         this.getMsg('getUserLootOrderList',  0);
-        break;
-      case "daiban":
-        this.setData({ daiban: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getStatusOrderList',  2);
-        break;
-      case "daiwancheng":
-        this.setData({ daiwancheng: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getStatusOrderList',  3);
         break;
       case "daipingjia":
         this.setData({ daipingjia: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
@@ -120,7 +116,8 @@ Page({
     switch(status){
       case 0:
         db.collection('print').where({
-          orderTaker:app.globalData.OPEN_ID//接单人是自己TODO
+          //orderTaker:app.globalData.OPEN_ID,//接单人是自己TODO
+          _openid:app.globalData.OPEN_ID
         }).get({
           success: function(res) {
             that.setData({ data: res.data });

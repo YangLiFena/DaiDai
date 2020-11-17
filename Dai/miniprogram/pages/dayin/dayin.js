@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 const print = db.collection('print');
+const app=getApp()
 Page({
   
   data: {
@@ -106,7 +107,10 @@ Page({
         price: 1111,
         num: this.data.printNum,
         message: this.data.message,
-
+        avatarUrl:app.globalData.AVATAR,
+        status:"待接单",
+        nickName:app.globalData.NICKNAME,
+        orderType:"打印"
         // formId: event.detail.formId
       }
     }).then(res => {

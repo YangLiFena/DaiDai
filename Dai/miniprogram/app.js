@@ -4,7 +4,9 @@ App({
     APP_ID :'',//输入小程序appid  
     APP_SECRET:'',//输入小程序app_secret  
     OPEN_ID:'',//储存获取到openid  
-    SESSION_KEY:''//储存获取到session_key  
+    SESSION_KEY:'',//储存获取到session_key
+    AVATAR:'',//头像
+    NICKNAME:'',//昵称
   },
   onLaunch: function () {
     

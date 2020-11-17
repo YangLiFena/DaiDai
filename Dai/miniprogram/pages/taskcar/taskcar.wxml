@@ -17,7 +17,7 @@
 </view>
   <block wx:for="{{data}}">
     <view class="titleHead">
-      <text class="orderType">{{item[0].orderType}}</text>
+      <text class="orderType">{{item.orderType}}</text>
       <image src="/photo/cancel.png" hidden="{{item[2].cancel}}" bindtap="cancel" data-index="{{index}}"></image>
     </view>
     <view class="element">
@@ -43,8 +43,8 @@
     </view>
     <view class="moneyView">
       <view>
-      <text class="xingshi">{{details}}</text>
-        <text>金额:{{item.price}}元</text>
+      <text>{{details}}</text>
+        <text class="xingshi">金额:{{item.price}}元</text>
       </view>
     </view>
     <view class="buttonView">

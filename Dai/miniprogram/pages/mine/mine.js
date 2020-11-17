@@ -54,6 +54,8 @@ Page({
   success: function (res) {
   console.log(res)
   // console.log(res.userInfo)
+  app.globalData.NICKNAME=res.userInfo.nickName
+  app.globalData.AVATAR=res.userInfo.avatarUrl
   that.setData({
   nickName: res.userInfo.nickName, //昵称
   avatarUrl: res.userInfo.avatarUrl //头像
