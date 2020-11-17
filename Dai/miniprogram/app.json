@@ -1,19 +1,20 @@
 {
-  "pages":[
+  "pages": [
     "pages/mine/mine",
+    "pages/alltasks/alltasks",
     "pages/login_/login_",
+    "pages/taskcar/taskcar",
     "pages/identity/identity",
     "pages/homepage/homepage",
     "pages/logs/logs",
     "pages/index/index",
-    "pages/message/message",
-    "pages/taskcar/taskcar"
+    "pages/message/message"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [

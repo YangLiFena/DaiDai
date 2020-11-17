@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
   "usingComponents": {}
+=======
+  "usingComponents": {},
+  "navigationBarTitleText": "带人"
+>>>>>>> 1e7103b (新增任务大厅、任务车界面，更新login获取用户openid)
 }

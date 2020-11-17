@@ -23,14 +23,13 @@ Page({
     });
   },
   addStudent:function(){
+    //放入数据库
       db.collection('StudentCard').add({
-      // data 字段表示需新增的 JSON 数据
       data: {
         name:this.data.name,
         sid:this.data.sid
       },
       success: function(res) {
-        // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
         console.log(res)
       }
     })

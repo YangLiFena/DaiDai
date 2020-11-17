@@ -1,0 +1,52 @@
+<!--miniprogram/pages/alltasks/alltasks.wxml-->
+<import src="/pages/util/util.wxml" />
+
+<view class="section">
+  <view class="section__title">排序方式</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      {{array[index]}}
+    </view>
+  </picker>
+</view>
+<view>
+  <block wx:for="{{data}}">
+    <view class="titleHead">
+      <text class="orderType">{{item.orderType}}</text>
+    </view>
+    <view class="element">
+      <view class="head">
+        <view class="avatar" bindtap="personal">
+          <image src="{{item.avatarUrl}}" />
+        </view>
+        <view class="nickName">
+          <text>{{item.nickName}}</text>
+        </view>
+      </view>
+      <view class="msg">
+        <view class="content">
+          <text>{{item.message}}</text>
+        </view>
+      </view>
+      <view class="date">
+        <text>完成时间：{{item.finishTime}}</text>
+      </view>
+      <view class="status">
+        <text>{{item.status}}</text>
+      </view>
+    </view>
+    <view class="moneyView">
+      <view>
+      <text>{{details}}</text>
+      <text class="xingshi">赏金:{{item.price}}元</text>
+      </view>
+    </view>
+    <view class="buttonView" data-id="{{item._id}}">
+        <button class="button" bindtap="detail" data-id="{{item._id}}">详情</button>
+        <button class="button" bindtap="takeOrder" data-id="{{item._id}}">接单</button>
+        <button class="button" bindtap="detail" >联系</button>
+        <button class="button" bindtap="jiedan" >接单人</button>
+  </view>
+  </block>
+
+</view>

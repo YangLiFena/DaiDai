@@ -14,13 +14,13 @@
 
 <!--导航 开始-->
 <view class="home_cate">
-  <view class="img" bindtap="jmpFaBuPage" >
+  <view class="img" bindtap="jmpAllTasksPage" >
     <image mode="widthFix"  src="/photo/tag1.png"></image>      
   </view>
   <view class="img1" bindtap="jmpFaBuPage" >
     <image mode="widthFix"  src="/photo/tag2.png"></image>      
   </view>
-  <view class="img2" bindtap="jmpFaBuPage" >
+  <view class="img2" bindtap="jmpAsksPage" >
     <image mode="widthFix"  src="/photo/tag3.png"></image>      
   </view>
 </view>

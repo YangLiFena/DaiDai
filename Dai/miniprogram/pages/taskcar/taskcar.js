@@ -1,29 +1,20 @@
 // pages/orderManager/orderManager.js
+const db = wx.cloud.database();
+var app=getApp()
 Page({
 
-
-  //false显示
-  //true隐藏
-  /**
-   * 页面的初始数据
-   */
   data: {
     personal: true,
     "userInfo": null,
     quanbu: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold",
+    details:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var userInfo = wx.getStorageSync("userInfo");
-    console.log(userInfo);
-    this.setData({
-      "userInfo": userInfo
-    })
     this.getMsg('getUserOrderList', 0);
-
   },
 
   /**
@@ -84,7 +75,6 @@ Page({
     })
   },
   preview: function () {
-    console.log(1123)
     var avatar = this.data.userInfo.avatarUrl;
     console.log(avatar)
     wx.previewImage({
@@ -92,9 +82,9 @@ Page({
     })
   },
   item: function (options) {
-    this.setData({ daipingjia: "", quanbu: "", send: "", end: "", daiban: "", daiwancheng: "" });
+    this.setData({ quanbu: "", daiban: "", send: "", end: "", daipingjia: "", });
     var item = options.currentTarget.dataset.item;
-    console.log(item)
+    console.log("item:"+item)
     switch (item) {
       case "quanbu":
         this.setData({ quanbu: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
@@ -112,7 +102,6 @@ Page({
         this.setData({ daiban: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
         this.getMsg('getStatusOrderList',  2);
         break;
-      //有漏洞
       case "daiwancheng":
         this.setData({ daiwancheng: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
         this.getMsg('getStatusOrderList',  3);
@@ -128,124 +117,47 @@ Page({
     var that = this;
     var userInfo = this.data.userInfo;
     var util = require('../../utils/util.js');
-    wx.request({
-      url: 'https://api.wnschool.cn/order-' + xuanxiang,
-      data: {
-        "user.id": userInfo.id,
-        "order.status": status,
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res);
-        if (res.data.length > 0) {
-          for (var i = 0; i < res.data.length; i++) {
-            var fadan = {
-              hidden: true,
-              zhuyao: "zhuyao"
-            }
-            var jiedan = {
-              hidden: true,
-              zhuyao: "zhuyao"
-            }
-            var complete = {
-              hidden: true,
-              zhuyao: "zhuyao"
-            }
-            var evaluate = {
-              hidden: true,
-              zhuyao: "zhuyao"
-            }
-            var o = {
-              fadan: fadan,
-              jiedan: jiedan,
-              complete: complete,
-              evaluate: evaluate,
-            }
-            res.data[i].push(o)
-           
-            var time = util.formatTime(res.data[i][0].finishTime);
-            res.data[i][0].finishTime = time;
-            var status = res.data[i][0].status;
-            var orderHost = res.data[i][0].orderHost;
-            var lootPerson = res.data[i][0].lootPerson;
-            var shenfen = "";
-            if (orderHost == userInfo.id) {
-              shenfen = "发单";
-            } else {
-              shenfen = "接单";
-            }
-            res.data[i][2].shenfen = shenfen;
-            //隐藏取消按钮
-            res.data[i][2].cancel = "true"
-            if (res.data[i][0].isEvaluate != null) {
-              evaluate.hidden = false;
-            } else {
-              evaluate.hidden = true;
-            }
-            res.data[i][2].evaluate = evaluate;
-            switch (status) {
-              case 0:
-                res.data[i][0].status = "订单已取消";
-                break;
-              case 1:
-                res.data[i][0].status = "订单新发布";
-                //显示取消按钮
-                res.data[i][2].cancel = "";
-                break;
-              case 2:
-                res.data[i][0].status = "订单已承接";
-                if (res.data[i][2].shenfen == "发单") {
-                  jiedan.hidden = false;
-                  res.data[i][2].jiedan = jiedan;
-                  console.log("发单")
-                } else {
-                  fadan.hidden = false;
-                  res.data[i][2].fadan = fadan;
-                  console.log("接单")
-                  complete.hidden = false;
-                  complete.zhuyao = "";
-                  res.data[i][2].complete = complete;
-                }
-                res.data[i][2].cancel = "";
-                break;
-              case 3:
-                res.data[i][0].status = "订单已完成";
-                if (res.data[i][2].shenfen == "发单") {
-                  jiedan.hidden = false;
-                  res.data[i][2].jiedan = jiedan;
-                  console.log("发单")
-                  complete.hidden = false;
-                  res.data[i][2].complete = complete;
-                } else {
-                  fadan.hidden = false;
-                  res.data[i][2].fadan = fadan;
-                  console.log("接单")
-                }
-                break;
-              case 4:
-                res.data[i][0].status = "订单已结单";
-                if (res.data[i][0].orderHost == that.data.userInfo.id) {
-                  evaluate.hidden = false;
-                  res.data[i][2].evaluate = evaluate;
-                }
-                if (res.data[i][0].isEvaluate != null) {
-                  evaluate.hidden = true;
-                  res.data[i][2].evaluate = evaluate;
-                }
-                break;
-            }
+    switch(status){
+      case 0:
+        db.collection('print').where({
+          orderTaker:app.globalData.OPEN_ID//接单人是自己TODO
+        }).get({
+          success: function(res) {
+            that.setData({ data: res.data });
           }
-        } else {
-          that.setData({ tishi: false });
-        }
-
-        that.setData({ data: res.data });
-        console.log(that.data.data)
-      }
-    })
+        })
+        break;
+      case 1:
+        db.collection('print').where({
+          orderTaker:app.globalData.OPEN_ID,
+          status: "已接单"
+        }).get({
+          success: function(res) {
+            // res.data 是包含以上定义的两条记录的数组
+            that.setData({ data: res.data });
+          }
+        })
+        break;
+        case 2:
+          db.collection('print').where({
+            _openid:app.globalData.OPEN_ID
+          }).get({
+            success: function(res) {
+              that.setData({ data: res.data });
+            }
+          })
+          break;
+        case 3:
+          db.collection('print').where({
+            orderTaker:app.globalData.OPEN_ID,
+            status: "已完成"
+          }).get({
+            success: function(res) {
+              that.setData({ data: res.data });
+            }
+          })
+          break;
+    }
   },
   evaluate: function (options) {
     console.log(options.currentTarget.dataset.orderid);

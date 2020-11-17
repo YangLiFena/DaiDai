@@ -16,10 +16,19 @@ Page({
     ]
   },
   jmpFaBuPage:function(options){ 
-    console.log(1);
     wx.navigateTo({
       url: '../fabu/fabu'
     })
-  }
+  },
+  jmpAllTasksPage:function(options){ 
+    wx.navigateTo({
+      url: '../alltasks/alltasks'
+    })
+  },
+  jmpAsksPage:function(options){ 
+    wx.navigateTo({
+      url: '../fabu/fabu'
+    })
+  },
 })
 
