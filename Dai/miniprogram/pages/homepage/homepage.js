@@ -27,7 +27,7 @@ Page({
   },
   jmpAsksPage:function(options){ 
     wx.navigateTo({
-      url: '../fabu/fabu'
+      url: '../kefu/kefu'
     })
   },
 })

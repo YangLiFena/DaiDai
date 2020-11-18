@@ -1,20 +1,54 @@
 {
   "pages": [
     "pages/mine/mine",
-    "pages/alltasks/alltasks",
+    "pages/dairen/dairen",
+    "pages/daifan/daifan",
+    "pages/pingjia/pingjia",
+    "pages/renwuhuo/renwuhuo",
+    "pages/tousu/tousu",
+    "pages/renyuan/renyuan",
+    "pages/daying/daying",
     "pages/login_/login_",
-    "pages/taskcar/taskcar",
     "pages/identity/identity",
     "pages/homepage/homepage",
-    "pages/logs/logs",
-    "pages/index/index",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/taskcar/taskcar",
+    "pages/feedback/feedback",
+    "pages/complaint/complaint",
+    "pages/appraise/appraise",
+    "pages/kefu/kefu"
   ],
   "window": {
+    "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "带代",
     "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "vant-weapp/button",
+    "van-picker": "vant-weapp/picker",
+    "van-cell": "vant-weapp/cell",
+    "van-cell-group": "vant-weapp/cell-group",
+    "van-icon": "vant-weapp/icon",
+    "van-tag": "vant-weapp/tag",
+    "van-datetime-picker": "vant-weapp/datetime-picker",
+    "van-popup": "vant-weapp/popup",
+    "van-field": "vant-weapp/field",
+    "van-submit-bar": "vant-weapp/submit-bar",
+    "van-row": "vant-weapp/row",
+    "van-col": "vant-weapp/col",
+    "van-rate": "vant-weapp/rate",
+    "van-nav-bar": "vant-weapp/nav-bar",
+    "van-tree-select": "vant-weapp/tree-select",
+    "van-tabs": "vant-weapp/tabs",
+    "van-tab": "vant-weapp/tab",
+    "van-panel": "vant-weapp/panel",
+    "van-action-sheet": "vant-weapp/action-sheet",
+    "van-uploader": "@vant/weapp/uploader",
+    "van-index-bar": "@vant/weapp/index-bar",
+    "van-index-anchor": "@vant/weapp/index-anchor"
   },
   "tabBar": {
     "list": [
@@ -45,7 +79,5 @@
     ],
     "color": "#B1B1B1",
     "selectedColor": "#EF4143"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  }
 }

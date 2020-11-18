@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -26,29 +26,27 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": []
+    "packNpmRelationList": [],
+    "minifyWXSS": true
   },
   "appid": "wx4184fe0dc5886089",
-  "projectname": "SEDai",
+  "projectname": "printpaper2",
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
@@ -56,7 +54,49 @@
         {
           "id": -1,
           "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide"
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "dairen",
+          "pathName": "pages/dairen/dairen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daifan",
+          "pathName": "pages/daifan/daifan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pingjia",
+          "pathName": "pages/pingjia/pingjia",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renwuhuo",
+          "pathName": "pages/renwuhuo/renwuhuo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "tousu",
+          "pathName": "pages/tousu/tousu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renyuan",
+          "pathName": "pages/renyuan/renyuan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "mine",
+          "pathName": "pages/mine/mine",
+          "scene": null
         }
       ]
     }

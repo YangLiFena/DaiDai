@@ -109,7 +109,6 @@ Page({
     console.log(xuanxiang + " --   -- " + status)
     var that = this;
     var userInfo = this.data.userInfo;
-    var util = require('../../utils/util.js');
     db.collection('print').get({
       success: function(res) {
         // res.data 包含该记录的数据
@@ -121,6 +120,7 @@ Page({
           that.setData({ tishi: false });
         }
         that.setData({ data: res.data });
+        console.log(res.data)
       }
     })
   },

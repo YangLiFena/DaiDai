@@ -8,7 +8,7 @@ Page({
   jmpDaiFanPage:function(options){ 
     //console.log(1);
     wx.navigateTo({
-      url: '../fabu_daifan/fabu_daifan'
+      url: '../daifan/daifan'
     })
   },
   jmpDaiRenPage:function(options){ 
@@ -20,7 +20,7 @@ Page({
   jmpDaiDYPage:function(options){ 
     //console.log(1);
     wx.navigateTo({
-      url: '../dayin/dayin'
+      url: '../daying/daying'
     })
   },
   /**

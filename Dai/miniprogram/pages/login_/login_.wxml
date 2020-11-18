@@ -1,15 +1,12 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <block wx:if="{{type == 'wechat'}}">
 
-<view class="contianer" wx:if="{{isHide}}">
-    <view wx:if="{{canIUse}}" >
-      <image class="avatar" src="/photo/logo.png"></image>
-      <view class="txt">
-      <text class="header">时间，不在于你拥有多少
-                                而在于你怎样掌握
-      </text>
-      </view>
-      <image class="avatar_1" src="/photo/s_logo.png"></image>
-        <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-            授权登录
-        </button>
-    </view>
+    <image class="avatar" src="/photo/logo.png"></image>
+    <text class="header">时间，不在于你拥有多少
+      而在于你怎样掌握
+    </text>
+    <image class="avatar_1" src="/photo/s_logo.png"></image>
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" hover-class="hover"><image class="avatar_2" src="/photo/avatar.png"></image>微信一键登录</button>
+  </block>
 </view>

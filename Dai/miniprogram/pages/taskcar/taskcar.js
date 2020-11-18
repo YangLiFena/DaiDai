@@ -112,7 +112,7 @@ Page({
     console.log(xuanxiang + " --   -- " + status)
     var that = this;
     var userInfo = this.data.userInfo;
-    var util = require('../../utils/util.js');
+    // var util = require('../../utils/util.js');
     switch(status){
       case 0:
         db.collection('print').where({

@@ -1,0 +1,14 @@
+.pad {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+}
+
+.line {
+  margin: 0 auto;
+  height: 1px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #D8D8D8;
+}
