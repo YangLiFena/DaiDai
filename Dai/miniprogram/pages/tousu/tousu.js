@@ -12,7 +12,9 @@ Page({
     people: null
   },
   urlTurn: function() {
-    console.log("urlturn")
+    wx.redirectTo({
+      url: `../renyuan/renyuan`,
+    })
   },
   optchange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -57,6 +59,11 @@ Page({
         icon: 'success'
       })
     })
-  }
+  },
+  onLoad: function (options) {
+    this.setData({
+      people: options.people
+    })
+  },
 })
 

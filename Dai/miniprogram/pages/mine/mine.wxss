@@ -43,7 +43,7 @@ page {
   background: white;
 }
 .mine_cate navigator{
-  padding: 20rpx;
+  padding: 30rpx;
   flex:1;
 }
 .mine_cate image{
@@ -74,4 +74,22 @@ page {
   margin-top: 40px;
   background-color: red;
   /* background-color: white; */
+}
+
+.icon-aoxiang{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 60 60'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:url(%23未命名的渐变_18);%7D.cls-2%7Bfill:%23fff;%7D%3C/style%3E%3ClinearGradient id='未命名的渐变_18' y1='30' x2='60' y2='30' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23fd614b'/%3E%3Cstop offset='1' stop-color='%23fe3930'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctitle%3E资源 1%3C/title%3E%3Cg id='图层_2' data-name='图层 2'%3E%3Cg id='图层_1-2' data-name='图层 1'%3E%3Ccircle class='cls-1' cx='30' cy='30' r='30'/%3E%3Cpath class='cls-2' d='M20.18562,47a4.72763,4.72763,0,0,1-4.72115-4.72115V17.72114A4.72763,4.72763,0,0,1,20.18562,13H39.83115a4.72763,4.72763,0,0,1,4.72114,4.72114V42.27562a4.72763,4.72763,0,0,1-4.72114,4.72115Zm0-31.92115a2.64876,2.64876,0,0,0-2.64553,2.64552V42.27886a2.64877,2.64877,0,0,0,2.64553,2.64552H39.83115a2.64876,2.64876,0,0,0,2.64552-2.64552V17.72114a2.64876,2.64876,0,0,0-2.64552-2.64552Z'/%3E%3Cpath class='cls-2' d='M22.23533,31.03943a1.03943,1.03943,0,1,1,0-2.07562H37.77819a1.03943,1.03943,0,1,1,0,2.07562Zm0,4.909a1.03942,1.03942,0,1,1,0-2.06266H32.8401a1.03943,1.03943,0,0,1,0,2.07886Zm0-9.83409a1.03943,1.03943,0,0,1-.001-2.07886H37.77819a1.03943,1.03943,0,0,1,.001,2.07886H22.23533Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+}
+.iconaoxiang{
+  display: inline-block;
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.abc {
+  padding-right: 5%;
+}
+
+.abc2 {
+  font-style: '黑体';
 }

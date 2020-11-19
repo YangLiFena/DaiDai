@@ -18,13 +18,31 @@
     >
     <image mode="widthFix" src="{{item.image_src}}" ></image>
     </navigator>
+
+
+  <view class="abc">
+    <navigator url="../renwuhuo/renwuhuo">
+    <van-col>
+      <van-row>
+        <view style="margin-top:32rpx">
+         <text class="iconaoxiang icon-aoxiang"></text>
+         </view>
+      </van-row>
+      <van-row>
+       <text class="abc2">我的订单</text>
+      </van-row>
+    </van-col>
+  </navigator>
+  </view>
+   
+
   </view>
   <!-- <view class="v4">
   <button class='button'  open-type="feedback"></button>
   </view> -->
   <!--导航 开始-->
   <view class="view_3">
-   
+
   </view>
 </view>
 

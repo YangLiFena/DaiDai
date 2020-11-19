@@ -4,7 +4,7 @@
 <view class="line"></view>
 
 <view class="section">
-  <van-cell title="请选择投诉对象" is-link bind:click="urlTurn"></van-cell>
+  <van-cell title="请选择投诉对象" is-link bind:click="urlTurn" value="{{people}}"></van-cell>
   <van-cell title="请选择投诉类型" is-link>
     <picker bindchange="optchange" value="{{index}}" range="{{array}}">
       <view class="picker">

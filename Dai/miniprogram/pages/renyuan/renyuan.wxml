@@ -1,8 +1,18 @@
-<view class="pad">
-  <text class="textTop">请选择你所要投诉的人员</text>
-</view>
-<view class="line"></view>
+<view wx:for="{{tasks}}" class="pad" bindtap="back">
+  <navigator url="../tousu/tousu?people={{item.nickName}}">
+  <van-row>
+    <van-col>
+      <image class="avatar" src="{{ item.avatar }}"></image>
+    </van-col>
 
-<view>
-  <van-cell wx:if="{{ tasks }}"></van-cell>
+    <van-col span="15">
+    <view class="name">
+      <van-row>
+        <text class="textName">{{ item.nickName }}</text>
+      </van-row>
+    </view>
+    </van-col>
+  </van-row>
+  <view class="line2"></view>
+</navigator>
 </view>

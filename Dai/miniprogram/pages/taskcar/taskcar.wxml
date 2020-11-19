@@ -48,7 +48,7 @@
       </view>
     </view>
     <view class="buttonView">
-      <button class="button" bindtap="detail" data-id="{{item._id}}">详情</button>
+      <button class="button" bindtap="detail" data-id="{{item._id}}">详情 </button>
       <button class="button" bindtap="detail" >联系</button>
       <button class="button" bindtap="takeOrder" data-id="{{item._id}}">完成</button>
   </view>
