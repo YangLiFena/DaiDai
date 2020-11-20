@@ -93,3 +93,14 @@ page {
 .abc2 {
   font-style: '黑体';
 }
+
+.txt {
+  font-size: 14px;
+  /*margin-bottom: 30rpx;*/
+  align-items: center;
+  display: flex;
+  justify-content: center; 
+  letter-spacing: 1px;
+  font-family:MingLiU;
+  font-weight: 550;
+}

@@ -1,5 +1,6 @@
 // miniprogram/pages/alltasks/alltasks.js
 const db = wx.cloud.database();
+const app=getApp()
 Page({
   data: {
     array: ['默认', '发布时间', '完成时间', '赏金'],
@@ -33,10 +34,11 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = wx.getStorageSync("userInfo");
+    console.log(app.globalData)
     this.setData({
       "userInfo": userInfo
     })
-    this.getMsg('getUserOrderList', 0);
+    this.getMsg(0);
   },
 
   /**
@@ -50,7 +52,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -103,43 +104,59 @@ Page({
     })
   },
   item: function (options) {
-    this.getMsg('getUserOrderList', 0);
+    this.getMsg(0);
   },
-  getMsg(xuanxiang, status) {
-    console.log(xuanxiang + " --   -- " + status)
+  getMsg(status) {
     var that = this;
-    var userInfo = this.data.userInfo;
-    db.collection('print').get({
+    db.collection('print').where({
+      status:"待接单"
+    }).get({
       success: function(res) {
-        // res.data 包含该记录的数据
-        if (res.data.length > 0) {
-          for (var i = 0; i < res.data.length; i++) {
-            
-          }
-        } else {
-          that.setData({ tishi: false });
-        }
-        that.setData({ data: res.data });
-        console.log(res.data)
+       that.setData({ data: res.data });
       }
     })
   },
   //订单详情
   detail: function (options) {
+    console.log(options)
     var id = options.currentTarget.dataset.id;
     console.log(id);
-    //TODO
+    db.collection('print').doc(id).get({
+      success: function(res) {
+        console.log(res)
+        var d=res.data.orderType
+        switch(d){
+          case "打印":
+            wx.navigateTo({
+            url: `../dayinxiang/dayinxiang?id=${id}`,
+          })
+          break;
+          case "带人":
+            wx.navigateTo({
+            url: `../dairenxiang/dairenxiang?id=${id}`,
+          })
+          break;
+          case "带饭":
+            wx.navigateTo({
+            url: `../daihuoxiang/daihuoxiang?id=${id}`,
+          })
+          break;
+        }
+      }
+    })
   },
   takeOrder: function (options) {
+    var that=this
     var id = options.currentTarget.dataset.id;
     console.log(id);
+    var myid=app.globalData.OPEN_ID
     db.collection('print').doc(id).update({
       data: {
-        // 设为已接单
-        status: "已接单"
+        status: "已接单",
+        orderTaker:myid
       },
       success: function(res) {
-        console.log(res.data)
+        console.log(res)
       }
     })
     wx.showModal({
@@ -149,8 +166,16 @@ Page({
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          wx.redirectTo({
+            url: '../alltasks/alltasks'
+          })
         }
       }
     })
   },
+  contact: function() {
+    wx.redirectTo({
+      url: '../im/room/room',
+    })
+  }
 })

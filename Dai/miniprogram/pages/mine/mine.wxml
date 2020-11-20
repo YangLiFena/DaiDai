@@ -17,10 +17,11 @@
     url="{{item.add}}"
     >
     <image mode="widthFix" src="{{item.image_src}}" ></image>
+    <text class="txt">{{item.text}}</text>  
     </navigator>
 
 
-  <view class="abc">
+  <!-- <view class="abc">
     <navigator url="../renwuhuo/renwuhuo">
     <van-col>
       <van-row>
@@ -33,7 +34,7 @@
       </van-row>
     </van-col>
   </navigator>
-  </view>
+  </view> -->
    
 
   </view>

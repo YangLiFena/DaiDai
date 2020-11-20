@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMsg('getUserOrderList', 0);
+    this.getMsg(0);
   },
 
   /**
@@ -84,58 +84,73 @@ Page({
   item: function (options) {
     this.setData({ quanbu: "", daiban: "", send: "", end: "", daipingjia: "", });
     var item = options.currentTarget.dataset.item;
-    console.log("item:"+item)
+    console.log(item)
     switch (item) {
       case "quanbu":
         this.setData({ quanbu: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getUserOrderList', 0);
+        this.getMsg(0);
         break;
       case "daiban":
-        this.setData({ daiwancheng: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getStatusOrderList',  3);
+        this.setData({ daiban: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
+        this.getMsg(1);
         break;
       case "send":
         this.setData({ send: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getUserSendOrderList',  0);
+        this.getMsg(2);
         break;
       case "end":
         this.setData({ end: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getUserLootOrderList',  0);
+        this.getMsg(3);
         break;
       case "daipingjia":
         this.setData({ daipingjia: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold" });
-        this.getMsg('getUserOrderNotEvaluate',  4);
+        this.getMsg(4);
         break;
     }
   },
-  getMsg(xuanxiang, status) {
-    console.log(xuanxiang + " --   -- " + status)
+  getMsg(status) {
     var that = this;
-    var userInfo = this.data.userInfo;
-    // var util = require('../../utils/util.js');
+    var myid=app.globalData.OPEN_ID
+    const _ = db.command
+    //var userInfo = this.data.userInfo;
+    //var util = require('../../utils/util.js');
+    that.setData({ data: null });
     switch(status){
-      case 0:
-        db.collection('print').where({
-          //orderTaker:app.globalData.OPEN_ID,//接单人是自己TODO
-          _openid:app.globalData.OPEN_ID
-        }).get({
-          success: function(res) {
-            that.setData({ data: res.data });
-          }
-        })
+      case 0://所有相关订单，发单和接单
+      db.collection('print').where(_.or([
+        {
+          orderTaker: myid
+        },
+        {
+          _openid:myid
+        }
+      ]))
+      .get({
+        success: function(res) {
+          console.log(res.data)
+          that.setData({data:res.data})
+        }
+      })
         break;
-      case 1:
-        db.collection('print').where({
-          orderTaker:app.globalData.OPEN_ID,
-          status: "已接单"
-        }).get({
-          success: function(res) {
-            // res.data 是包含以上定义的两条记录的数组
-            that.setData({ data: res.data });
-          }
-        })
+      case 1://所有相关+status不是已完成
+      db.collection('print').where(_.or([
+        {
+          orderTaker: myid,
+          status:_.neq("已完成").and(_.neq("待评价"))
+        },
+        {
+          _openid:myid,//自己发单，待接单
+          status:_.neq("已完成").and(_.neq("待评价"))
+        }
+      ]))
+      .get({
+        success: function(res) {
+          console.log(res.data)
+          that.setData({data:res.data})
+        }
+      })
         break;
-        case 2:
+        case 2://发的单
           db.collection('print').where({
             _openid:app.globalData.OPEN_ID
           }).get({
@@ -144,16 +159,26 @@ Page({
             }
           })
           break;
-        case 3:
+        case 3://status=已完成，已评价，待评价就是已完成
           db.collection('print').where({
             orderTaker:app.globalData.OPEN_ID,
-            status: "已完成"
+            status:_.in(['已完成', '已评价'])
           }).get({
             success: function(res) {
               that.setData({ data: res.data });
             }
           })
           break;
+          case 4://status=已完成，orderTaker不是自己
+          db.collection('print').where({
+            orderTaker:_.neq(app.globalData.OPEN_ID),
+            status:"已完成"
+          }).get({
+            success: function(res) {
+              that.setData({ data: res.data });
+            }
+          })
+            break;
     }
   },
   evaluate: function (options) {
@@ -164,138 +189,116 @@ Page({
       url: '/pages/evaluate/evaluate?orderId=' + orderId + "&lootUserId=" + lootUserId,
     })
   },
-  jiedan: function (options) {
-    console.log(options);
-    var id = options.currentTarget.dataset.id;
-    var orderid = options.currentTarget.dataset.orderid;
-    console.log(orderid)
-    wx.navigateTo({
-      url: '/pages/orderLootPrivate/orderLootPrivate?id=' + id + "&orderid=" + orderid,
-    })
-  },
-  fadan: function (options) {
-    console.log(options.currentTarget.dataset.id);
-    var id = options.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/privateOrder/privateOrder?id=' + id,
-    })
-  },
   complete: function (options) {
-    console.log(options.currentTarget.dataset.index);
     var that = this;
-    var index = options.currentTarget.dataset.index;
-    var data = this.data.data[index][0];
-    var s = '你确定完成订单了吗？ 订单金额只有在双方都确认，点击"完成订单"才会到达接单的同学的账户。'
-    if (data.orderHost == that.data.userInfo.id) {
-      s = "你确定接单的同学已经完成了吗？"
-    }
+    var index = options.currentTarget.dataset.id;
+    var myid=app.globalData.OPEN_ID
+    var s = '确定你已完成订单'
+    console.log(index)
+    db.collection('print').doc(index).get({
+      success:function(res) {
+        console.log(res)
+        if (res.data.orderTaker != myid) {
+          s = "确定你的订单已被完成"
+        }
+        wx.showModal({
+          title: '提示',
+          content: s,
+          success: function (res) {
+            if (res.confirm) {
+              that.completeOrder(index)//完成状态设置
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    })
+  },
+  //订单详情
+  detail: function (options) {
+    var id =options.currentTarget.dataset.id;
+    console.log(id);
+    db.collection('print').doc(id).get({
+      success: function(res) {
+        console.log(res)
+        var d=res.data.orderType
+        switch(d){
+          case "打印":
+            wx.navigateTo({
+            url: `../dayinxiang/dayinxiang?id=${id}`,
+          })
+          break;
+          case "带人":
+            wx.navigateTo({
+              url: `../dairenxiang/dairenxiang?id=${id}`,
+          })
+          break;
+          case "带饭":
+            wx.navigateTo({
+              url: `../daihuoxiang/daihuoxiang?id=${id}`,
+          })
+          break;
+        }
+      }
+    })
+  },
+  completeOrder: function (index) {
+    db.collection('print').doc(index).update({
+      data: {
+        status: "已完成",
+      },
+      success: function(res) {
+        console.log(res)
+      }
+    })
     wx.showModal({
       title: '提示',
-      content: s,
+      content: '订单已完成！',
+      showCancel:false,
       success: function (res) {
         if (res.confirm) {
-          that.completeOrder(index)
+          console.log('用户点击确定')
+        }
+      }
+    })
+  },
+  cancel:function(options){
+    var index = options.currentTarget.dataset.id;
+    var that=this
+    wx.showModal({
+      title: '确定取消订单？',
+      //content: '确定取消订单后，将会退还您的订单金额。',
+      success: function (res) {
+        if (res.confirm) {
+          that.cancelOrder(index)//完成状态设置
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
   },
-  detail: function (options) {
-    console.log(options.currentTarget.dataset.id);
-    var id = options.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail?id=' + id,
-    })
-  },
-  completeOrder: function (index) {
-    var data = this.data.data[index][0];
-    var orderId = data.id;
-    var status;
-    if (data.status == "订单已承接") {
-      status = 2
-    } else if (data.status == "订单已完成") {
-      status = 3;
-    }
-    var userInfo = this.data.userInfo;
-    var s = "完成订单申请成功,请等待发布订单的同学点击完成订单！！"
-    if (data.orderHost == userInfo.id) {
-      s = "订单已结束,订单金额将到达接单人的账户，感谢您的使用！！";
-    }
-    wx.request({
-      url: 'https://api.wnschool.cn/order-updateOrderStatus',
-      data: {
-        // "code":code,
-        "order.id": orderId,
-        "order.status": status + 1,
-        "user.id": userInfo.id
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'POST',
-      success: function (res) {
-        console.log(res);
-        if (res.data == "lootSuccess") {
-          wx.showModal({
-            title: '提示',
-            content: s,
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              }
+  cancelOrder: function (index) {
+    console.log(index)
+    db.collection('print').doc(index).remove({
+      success: function(res) {
+        console.log(res)
+        wx.showModal({
+          title: '提示',
+          content: '订单已取消！',
+          showCancel:false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
             }
-          })
-          // wx.showToast({
-          //   title: s,
-          //   success: function () {
-
-          //     setTimeout(function () {
-          //       wx.hideToast();
-          //     }, 2000)
-          //   }
-          // })
-        } else{
-          wx.showModal({
-            title: '提示',
-            content: '订单发生错误',
-            showCancel:false,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              }
-            }
-          })
-        }
+          }
+        })
       }
     })
   },
-  cancel:function(options){
-    var index = options.currentTarget.dataset.index;
-        var item = this.data.data[index];
-        if (item[0].status == "订单新发布" && item[2].shenfen=="发单"){
-          wx.showModal({
-            title: '你确定要取消订单？',
-            content: '确定取消订单后，将会退还您的订单金额。',
-            success:function(){
-              
-            }
-          })
-          //订单主人在状态1时发出取消信号
-        } else if (item[0].status == "订单已承接" && item[2].shenfen == "发单"){
-          //订单主人在状态2时发出取消信号
-          wx.showModal({
-            title: '你的订单已被承接，你无法取消订单，请联系承接订单的童鞋取消订单吧.',
-            content: '',
-            showCancel: false
-          })
-        } else if(item[0].status == "订单已承接" && item[2].shenfen == "接单"){
-          //接单人在状态2时发出取消信号
-          wx.showModal({
-            title: '你确定要取消订单？',
-            content: '确定取消订单后，订单金额将退还到达发布订单的童鞋。'
-          })
-        }
+  contact: function() {
+    wx.redirectTo({
+      url: '../im/room/room',
+    })
   }
 })

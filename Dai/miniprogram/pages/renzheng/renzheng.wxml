@@ -1,0 +1,12 @@
+<!--pages/renzheng/renzheng.wxml-->
+<view class="v1">
+  <image class="ph" src="/photo/renzheng.png" style="width:75%;height:500rpx"></image>
+  <text class="txt1">请检验您的真实身份</text>
+</view>
+<view class="v2">
+  <text class="txt2">为预防恶意行为的出现，给您带来不好的用户体验\n请完成实名认证，我们承诺保护您的信息安全</text>
+</view>
+
+<view>
+  <button class="btn" bindtap="onclick" loading="{{loading}}">  学生卡认证 </button>
+</view>

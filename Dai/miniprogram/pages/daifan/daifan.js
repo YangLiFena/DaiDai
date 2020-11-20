@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 const print = db.collection('print');
+const app=getApp()
 Page({
   data: {
     good: null,
@@ -75,7 +76,7 @@ Page({
     })
   },
   onSubmit: function(event) {
-    console.log(event)
+    console.log(app.globalData.AVATAR)
     print.add({
       data: {
         from: this.data.locationObj1,
@@ -83,14 +84,23 @@ Page({
         date: this.data.date,
         time: this.data.time,
         good: this.data.good,
+        money: this.data.money,
         message: this.data.message,
-        money: this.data.money
+        avatarUrl:app.globalData.AVATAR,
+        status:"待接单",
+        nickName:app.globalData.NICKNAME,
+        orderType:"带饭"
       }
     }).then(res => {
       wx.showToast({
-        title: '添加成功',
-        icon: 'success'
-      })
+        title: '提交订单成功！',
+        icon: 'success',
+        success: res2 => {
+          wx.redirectTo({
+            url: `../daihuoxiang/daihuoxiang?id=${res._id}`,
+          })
+        }
+      }) 
     })
   }
 })

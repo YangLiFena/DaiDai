@@ -47,3 +47,19 @@ page {
   justify-content: center;
   box-shadow: 1px 1px 1px #DCDCDC;
 }
+
+.top1 {
+  padding-top: 30%;
+  font-size: 50rpx;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.top2 {
+  height: 150rpx;
+}
+
+.button {
+  padding-top: 10%;
+}

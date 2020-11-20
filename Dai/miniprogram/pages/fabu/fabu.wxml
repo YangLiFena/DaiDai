@@ -1,4 +1,4 @@
-<form bindsubmit="send">
+<!-- <form bindsubmit="send">
   <view>  
     <view class="zi1">
       <text class="tishi">
@@ -15,4 +15,19 @@
       <button form-type="submit" class="submit" bindtap="jmpDaiDYPage">代打印</button>
     </view>
   </view>
-</form>
+</form> -->
+
+
+<view class="top1">
+  <text class="top2">请选择任务类型</text>
+</view>
+<view class="button">
+  <van-button round type="info" size="large" color="#EF4143" bind:click="jmpDaiFanPage">带货</van-button>
+</view>
+<view class="button">
+  <van-button round type="info" size="large" color="#EF4143" bind:click="jmpDaiRenPage">带人</van-button>
+</view>
+<view class="button">
+  <van-button round type="info" size="large" color="#EF4143" bind:click="jmpDaiDYPage">代打印</van-button>
+</view>
+

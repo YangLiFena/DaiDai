@@ -1,4 +1,5 @@
 // pages/login.js
+var app = getApp()
 Page({
 
   /**
@@ -28,8 +29,10 @@ Page({
   onGetUserInfo: function(e) {
     const db = wx.cloud.database();
     const users = db.collection("Users")
-console.log(e)
+    console.log(e)
     if (e.detail.userInfo) {
+      app.globalData.AVATAR = e.detail.userInfo.avatarUrl
+      app.globalData.NICKNAME = e.detail.userInfo.nickName
       db.collection('Users').add({
         // data 字段表示需新增的 JSON 数据
         data: {
@@ -48,7 +51,7 @@ console.log(e)
        console.log(this.data.name),
       wx.setStorageSync('login', true)
       wx.redirectTo({
-        url: '../identity/identity',
+        url: '../renzheng/renzheng',
       })
     } else {
       wx.showModal({

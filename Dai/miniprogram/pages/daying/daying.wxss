@@ -37,3 +37,30 @@ textarea {
   height: 150rpx;
 }
 
+
+.line {
+  margin: 0 auto;
+  height: 1px;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  background-color: #D8D8D8;
+}
+
+.button {
+  margin-left: 5%;
+}
+
+.icon {
+  padding-top: 2%;
+}
+
+.text {
+  font-size: 14px;
+
+}
+
+.text2 {
+  padding-bottom: 5%;
+}

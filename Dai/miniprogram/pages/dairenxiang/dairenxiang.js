@@ -3,8 +3,13 @@ const print = db.collection('print');
 Page({
   data: {
     tasks1: {},
+    id: null
   },
   onLoad: function(options) {
+    console.log(options.id)
+    this.setData({
+      id: options.id
+    })
     this.getData();
   },
   getData: function(callback) {
@@ -16,7 +21,7 @@ Page({
       var i;
       for(i = 0; i < res.data.length; i++)
       {
-        if(res.data[i]._id == "d52d5a735fb13e2800ad54bc4ae6b3f2")
+        if(res.data[i]._id == this.data.id)
         {
           this.setData({
             tasks1: res.data[i]

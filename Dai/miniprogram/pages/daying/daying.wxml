@@ -53,7 +53,23 @@
 </view>
 </form>
 
-<van-button icon="add" type="primary" bindtap='selectFile'>选择文件</van-button>
+<view class="line"></view>
+
+<view class="text2">
+  <text class="text">您至多可以选择10个文件</text>
+</view>
+
+<van-row>
+  <van-col>
+    <van-button icon="add" type="primary" bindtap='selectFile' class="button">选择文件</van-button>
+  </van-col>
+  <view class="icon">
+  <van-col offset="1">
+    <van-icon name="{{ok}}" size="30px"></van-icon>
+  </van-col>
+</view>
+</van-row>
+
 <view>
-  <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit"></van-submit-bar>
+  <van-submit-bar price="" label="" suffix-label="" button-text="提交订单" bind:submit="onSubmit"></van-submit-bar>
 </view>

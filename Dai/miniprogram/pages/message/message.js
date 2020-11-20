@@ -39,4 +39,9 @@ Page({
       })
     })
   },
+  urlTurn: function() {
+    wx.redirectTo({
+      url: '../im/room/room',
+    })
+  }
 })

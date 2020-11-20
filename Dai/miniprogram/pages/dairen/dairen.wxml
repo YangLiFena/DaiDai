@@ -11,7 +11,7 @@
   </van-cell>
 </view>
 <view class="section">
-  <van-cell title="出行日期" is-link icon="time">
+  <van-cell title="出行日期" is-link>
     <picker mode="date" value="{{date}}" start="2020-01-01" end="2023-01-01" bindchange="bindDateChange">
     <view class="picker">
       {{date}}

@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 const print = db.collection('print');
+const app=getApp()
 Page({
   data: {
     locationObj1: {},
@@ -8,6 +9,7 @@ Page({
     time: '00:00',
     money: null,
     t: 0,
+
   },
   chooseLocation1: function(e) {
     wx.chooseLocation({
@@ -69,13 +71,22 @@ Page({
         to: this.data.locationObj2,
         date: this.data.date,
         time: this.data.time,
-        money: this.data.money
+        money: this.data.money,
+        avatarUrl:app.globalData.AVATAR,
+        status:"待接单",
+        nickName:app.globalData.NICKNAME,
+        orderType:"带人"
       }
     }).then(res => {
       wx.showToast({
-        title: '添加成功',
-        icon: 'success'
-      })
+        title: '提交订单成功！',
+        icon: 'success',
+        success: res2 => {
+          wx.redirectTo({
+            url: `../dairenxiang/dairenxiang?id=${res._id}`,
+          })
+        }
+      }) 
     })
   }
 })

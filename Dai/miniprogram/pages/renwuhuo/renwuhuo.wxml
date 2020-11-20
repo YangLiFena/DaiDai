@@ -1,28 +1,29 @@
 <van-tabs animated>
   <van-tab title="带货">
+    <block wx:for="{{tasks}}">
     <view class="line"></view>
     <view class="viewTop">
       <text class="textTop">订单详情</text>
     </view>
     <view>
       <view>
-        <van-field value="{{ tasks.good }}" disabled label="货物简介" input-align="right">
+        <van-field value="{{ item.good }}" disabled label="货物简介" input-align="right">
         </van-field>
       </view>
       <view class="section">
-        <van-cell title="取货地点" icon="location" value="{{ tasks.from.name }}">
+        <van-cell title="取货地点" icon="location" value="{{ item.from.name }}">
         </van-cell>
       </view>
       <view class="section">
-        <van-cell title="送达地点" icon="location" value="{{ tasks.to.name }}">
+        <van-cell title="送达地点" icon="location" value="{{ item.to.name }}">
         </van-cell>
       </view>
       <view class="section">
-        <van-cell title="期望送达时间" value="{{ tasks.date }} {{ tasks.time }}">
+        <van-cell title="期望送达时间" value="{{ item.date }} {{ item.time }}">
         </van-cell>
       </view>
       <view>
-        <van-field value="{{ tasks.money }} 元 " disabled  label="打赏费用" input-align="right">
+        <van-field value="{{ item.money }} 元 " disabled  label="打赏费用" input-align="right">
         </van-field>
       </view>
       <view>
@@ -32,13 +33,14 @@
             <textarea disabled value="订单备注" auto-focus="true" style="height: 7em">
               <view class="line1"></view>
               <view class="message">
-                {{ tasks.message }}
+                {{ item.message }}
               </view>
             </textarea>
           </view>
   </view>
 </view>
     </view>
+  </block>
   </van-tab>
 
   <van-tab title="带人">

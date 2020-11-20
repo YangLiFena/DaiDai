@@ -3,7 +3,8 @@
     <!-- display number of people in the room -->
     <view class="left"></view>
     <!-- room name -->
-    <view class="middle">{{groupName}}</view>
+    <!-- <view class="middle">{{groupName}}</view> -->
+    <view class="middle">测试号</view>
     <!-- reserved -->
     <view class="right"></view>
   </view>
@@ -72,13 +73,13 @@
       ></image>
     </view>
 
-    <view class="message-sender" wx:if="{{!userInfo}}">
+    <!-- <view class="message-sender" wx:if="{{!userInfo}}">
       <button 
         open-type="getUserInfo" 
         bindgetuserinfo="onGetUserInfo"
         class="userinfo"
       >请先登录后参与聊天</button>
-    </view>
+    </view> -->
   </view>
 
 </view>

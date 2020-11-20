@@ -16,7 +16,15 @@
     "pages/feedback/feedback",
     "pages/complaint/complaint",
     "pages/appraise/appraise",
-    "pages/kefu/kefu"
+    "pages/kefu/kefu",
+    "pages/im/im",
+    "pages/daihuoxiang/daihuoxiang",
+    "pages/dairenxiang/dairenxiang",
+    "pages/dayinxiang/dayinxiang",
+    "pages/alltasks/alltasks",
+    "pages/renzheng/renzheng",
+    "pages/fabu/fabu",
+    "pages/im/room/room"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -60,7 +68,7 @@
       },
       {
         "pagePath": "pages/message/message",
-        "text": "消息",
+        "text": "联系人",
         "iconPath": "photo/_message.png",
         "selectedIconPath": "photo/message.png"
       },

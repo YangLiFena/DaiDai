@@ -43,7 +43,8 @@ Page({
     ],
     index3: 0,
     printNum: null,
-    message: null
+    message: null,
+    ok: "cross"
   },
   optchange1: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -77,7 +78,7 @@ Page({
   },
   selectFile: function() {
     wx.chooseMessageFile({
-      count: 1,
+      count: 10,
       type: 'file',
       success: res => {
         console.log(res.tempFiles[0].path)
@@ -87,7 +88,11 @@ Page({
         }).then(res => {
           console.log(res)
           this.setData({
-            file: res.fileID
+            file: res.fileID,
+            ok: "success"
+          })
+          wx.showToast({
+            title: '文件上传成功！',
           })
         }).catch(err => {
           console.error(err)
@@ -102,16 +107,21 @@ Page({
         size: this.data.array1[this.data.index1],
         way: this.data.array2[this.data.index2],
         color: this.data.array3[this.data.index3],
-        price: 1111,
         num: this.data.printNum,
         message: this.data.message,
+        ordetType: "打印"
         // formId: event.detail.formId
       }
     }).then(res => {
       wx.showToast({
-        title: '添加成功',
-        icon: 'success'
-      })
+        title: '提交订单成功！',
+        icon: 'success',
+        success: res2 => {
+          wx.redirectTo({
+            url: `../dayinxiang/dayinxiang?id=${res._id}`,
+          })
+        }
+      }) 
     })
   }
 })

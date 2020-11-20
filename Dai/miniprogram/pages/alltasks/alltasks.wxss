@@ -1,6 +1,14 @@
 /* miniprogram/pages/alltasks/alltasks.wxss */
 
-
+.scroll_view_horizotal{
+  height: 65rpx;
+  background-color: whitesmoke;
+   white-space: nowrap;
+   line-height: 60rpx;
+   /*padding-top: 15rpx;*/
+   /*padding-bottom: 15rpx;*/
+   border-bottom: 5px solid gainsboro;
+}
 .titleHead{
   display: flex;
   flex:1;

@@ -3,18 +3,27 @@ Page({
     catelist:[
       {
         id:1,
-        image_src: '/photo/w1.png',
-        add:"/pages/pingjia/pingjia"
+        image_src: '/photo/我的评价.png',
+        add:"/pages/pingjia/pingjia",
+        text: "我的评价"
       },
       {
         id:2,
-        image_src: '/photo/w2.png',
-        add:"/pages/tousu/tousu"
+        image_src: '/photo/投诉.png',
+        add:"/pages/tousu/tousu",
+        text: "投诉"
       },
       {
         id:3,
-        image_src: '/photo/w3.png',
-        add:"/pages/feedback/feedback"
+        image_src: '/photo/意见反馈.png',
+        add:"/pages/feedback/feedback",
+        text: "意见反馈"
+      },
+      {
+        id:4,
+        image_src: '/photo/任务单.png',
+        add:"/pages/renwuhuo/renwuhuo",
+        text: "任务单"
       }
     ],
       ne:[],
