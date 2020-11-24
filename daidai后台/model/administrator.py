@@ -10,8 +10,12 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtCore import Qt, QSize
 
 from model.database import DataBase
-from model import user_information
-from model.order_informaton import GoodOrderInfo
+from model.good_order_information import GoodOrderInfo
+from model.person_order_information import PersonOrderInfo
+from model.print_order_information import PrintOrderInfo
+from model.user_information import UserInfo
+from model.show_image import ShowImage
+
 
 class AdministratorPage(QWidget):
     def __init__(self, info):
@@ -263,6 +267,7 @@ class OrderManage(QGroupBox):
             print('未找到')
         if self.table is not None:
             self.table.deleteLater()
+        self.searchInput.setText('')
         self.setTable()
 
     # 设置表格
@@ -379,24 +384,47 @@ class OrderManage(QGroupBox):
 
     def detailOrderFunction(self, orderId):
         index = 0
+        order_type = ''
         for item in self.good_list:
             if item[0] == orderId:
+                order_type = item[3]
                 break
             else:
                 index = index + 1
-        print(self.good_info)
+        # print('$$$$$$$$$$$$$')
+        # print(self.good_info)
         temp = {}
-        temp['GOOD'] = self.good_info[index][0]
-        temp['GETADDR'] = self.good_info[index][1]
-        temp['PUTADDR'] = self.good_info[index][2]
-        temp['DATE'] = self.good_info[index][3]
-        temp['MONEY'] = self.good_info[index][4]
-        temp['CREDIT'] = self.good_info[index][5]
-        temp['MESSAGE'] = self.good_info[index][6]
-        temp['EVALUATE'] = self.good_info[index][7]
-        temp['SCORE'] = self.good_info[index][8]
-        print(temp)
-        self.detailOrder = GoodOrderInfo(temp)
+        # print('------------')
+        # print(order_type)
+        if order_type == '带货':
+            temp['GOOD'] = self.good_info[index][0]
+            temp['GETADDR'] = self.good_info[index][1]
+            temp['PUTADDR'] = self.good_info[index][2]
+            temp['DATE'] = self.good_info[index][3]
+            temp['MONEY'] = self.good_info[index][4]
+            temp['CREDIT'] = self.good_info[index][5]
+            temp['MESSAGE'] = self.good_info[index][6]
+            temp['EVALUATE'] = self.good_info[index][7]
+            temp['SCORE'] = self.good_info[index][8]
+            self.detailOrder = GoodOrderInfo(temp)
+            # print(temp)
+        elif order_type == '带人':
+            temp['GETADDR'] = self.good_info[index][0]
+            temp['PUTADDR'] = self.good_info[index][1]
+            temp['DATE'] = self.good_info[index][2]
+            temp['MONEY'] = self.good_info[index][3]
+            temp['CREDIT'] = self.good_info[index][4]
+            temp['MESSAGE'] = self.good_info[index][5]
+            temp['EVALUATE'] = self.good_info[index][6]
+            temp['SCORE'] = self.good_info[index][7]
+            self.detailOrder = PersonOrderInfo(temp)
+        else:
+            temp['SIZE'] = self.good_info[index][0]
+            temp['COLOR'] = self.good_info[index][1]
+            temp['WAY'] = self.good_info[index][2]
+            temp['NUM'] = self.good_info[index][3]
+            temp['MESSAGE'] = self.good_info[index][4]
+            self.detailOrder = PrintOrderInfo(temp)
         self.detailOrder.show()
         # print("点击修改，待添加")
 
@@ -410,8 +438,16 @@ class OrderManage(QGroupBox):
     #         if ans:
     #             self.searchFunction()
 
-    def deleteOrderFunction(self, e):
-        print('点击删除，待添加')
+    def deleteOrderFunction(self, orderId):
+        msgBox = QMessageBox(QMessageBox.Warning, "请确认!", '请确认是否删除该订单!',
+                             QMessageBox.NoButton, self)
+        msgBox.addButton("确认", QMessageBox.AcceptRole)
+        msgBox.addButton("取消", QMessageBox.RejectRole)
+        if msgBox.exec_() == QMessageBox.AcceptRole:
+            ans = DataBase.delete_order(orderId)
+            if ans:
+                self.searchFunction()
+
 
     def initUI(self):
         self.setFixedSize(1100, 600)
@@ -460,9 +496,7 @@ class OrderManage(QGroupBox):
 class UserManage(QGroupBox):
     def __init__(self):
         super().__init__()
-        self.user_list = [
-            ['031802318', '031802318', '031802318', '带饭', '2020-12-12 12：00', '2020-12-12 12：00']
-        ]
+        self.user_list = []
         self.body = QVBoxLayout()
         self.table = None
         self.setTitleBar()
@@ -519,6 +553,12 @@ class UserManage(QGroupBox):
 
     def searchFunction(self):
         print('点击搜索，待添加')
+        self.user_list = DataBase.search_user(self.searchInput.text())
+        if self.user_list == []:
+            print('未找到')
+        if self.table is not None:
+            self.table.deleteLater()
+        self.searchInput.setText('')
         self.setTable()
 
     # 设置表格
@@ -566,7 +606,7 @@ class UserManage(QGroupBox):
         itemNICKNAME = QTableWidgetItem(val[3])
         itemNICKNAME.setTextAlignment(Qt.AlignCenter)
 
-        itemCREDIT = QTableWidgetItem(val[4])
+        itemCREDIT = QTableWidgetItem(str(val[4]))
         itemCREDIT.setTextAlignment(Qt.AlignCenter)
 
         itemModify = QToolButton(self.table)
@@ -632,8 +672,31 @@ class UserManage(QGroupBox):
     #     if ans:
     #         self.searchFunction()
 
-    def updateUserFunction(self, e):
-        print("点击修改，待添加")
+    def updateUserFunction(self, sno):
+        # print("点击修改，待添加")
+        index = 0
+        for item in self.user_list:
+            if item[0] == sno:
+                break
+            else:
+                index = index + 1
+        temp = {}
+        temp['ID'] = self.user_list[index][0]
+        temp['NAME'] = self.user_list[index][1]
+        temp['GENDER'] = self.user_list[index][2]
+        temp['NICKNAME'] = self.user_list[index][3]
+        temp['CREDIT'] = self.user_list[index][4]
+        # self.credit = self.user_list[index][4]
+        self.detailUser = UserInfo(temp)
+        self.detailUser.after_close.connect(self.updateCredit)
+        self.detailUser.show()
+
+    def updateCredit(self, user_info: dict):
+        print('update:  ', user_info['CREDIT'])
+        ans = DataBase.update_credit(user_info)
+        if ans:
+            self.searchFunction()
+
 
     # def addNewBookFunction(self):
     #     self.newBookDialog = book_information.BookInfo()
@@ -655,8 +718,15 @@ class UserManage(QGroupBox):
     #         if ans:
     #             self.searchFunction()
 
-    def deleteUserFunction(self, e):
-        print('点击删除，待添加')
+    def deleteUserFunction(self, sno):
+        msgBox = QMessageBox(QMessageBox.Warning, "请确认!", '请确认是否删除该用户!',
+                             QMessageBox.NoButton, self)
+        msgBox.addButton("确认", QMessageBox.AcceptRole)
+        msgBox.addButton("取消", QMessageBox.RejectRole)
+        if msgBox.exec_() == QMessageBox.AcceptRole:
+            ans = DataBase.delete_user(sno)
+            if ans:
+                self.searchFunction()
 
     def initUI(self):
         self.setFixedSize(1100, 600)
@@ -707,9 +777,7 @@ class UserManage(QGroupBox):
 class AuditManage(QWidget):
     def __init__(self):
         super().__init__()
-        self.audit_list = [
-            ['031802318', '031802318']
-        ]
+        self.audit_list = []
         self.body = QVBoxLayout()
         self.table = None
         self.setTitleBar()
@@ -766,6 +834,12 @@ class AuditManage(QWidget):
 
     def searchFunction(self):
         print('点击搜索，待添加')
+        self.audit_list = DataBase.search_audit(self.searchInput.text())
+        if self.audit_list == []:
+            print('未找到')
+        if self.table is not None:
+            self.table.deleteLater()
+        self.searchInput.setText('')
         self.setTable()
 
     # 设置表格
@@ -861,8 +935,16 @@ class AuditManage(QWidget):
     #     if ans:
     #         self.searchFunction()
 
-    def showImageFunction(self, e):
-        print("点击修改，待添加")
+    def showImageFunction(self, sno):
+        index = 0
+        for item in self.audit_list:
+            if item[0] == sno:
+                break
+            else:
+                index = index + 1
+        img_src = self.audit_list[index][2]
+        self.showImage = ShowImage(img_src)
+        self.showImage.show()
 
     # def addNewBookFunction(self):
     #     self.newBookDialog = book_information.BookInfo()
@@ -884,8 +966,15 @@ class AuditManage(QWidget):
     #         if ans:
     #             self.searchFunction()
 
-    def accessFunction(self, e):
-        print('点击删除，待添加')
+    def accessFunction(self, sno):
+        msgBox = QMessageBox(QMessageBox.Warning, "请确认!", '请确认该用户是否通过审核!',
+                             QMessageBox.NoButton, self)
+        msgBox.addButton("确认", QMessageBox.AcceptRole)
+        msgBox.addButton("取消", QMessageBox.RejectRole)
+        if msgBox.exec_() == QMessageBox.AcceptRole:
+            ans = DataBase.user_access(sno)
+            if ans:
+                self.searchFunction()
 
     def initUI(self):
         self.setFixedSize(1100, 600)

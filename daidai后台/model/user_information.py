@@ -39,25 +39,27 @@ class UserInfo(QGroupBox):
         # ID输入框
         self.idInput = QLineEdit()
         self.idInput.setFixedSize(400, 40)
-        self.idInput.setText(self.user_info['ID'])
-        self.idInput.initText = '请输入学号/商家号'
+        self.idInput.setText('学号/商家号：' + self.user_info['ID'])
+        # self.idInput.initText = '请输入学号/商家号'
         self.idInput.setEnabled(False)
 
         # 姓名输入框
         self.nameInput = QLineEdit()
         self.nameInput.setFixedSize(400, 40)
-        self.nameInput.setText(self.user_info['NAME'])
-        self.nameInput.initText = '请输入姓名'
-        self.nameInput.setTextMargins(5, 5, 5, 5)
-        self.nameInput.mousePressEvent = lambda x: self.inputClick(self.nameInput)
+        self.nameInput.setText('姓名：' + self.user_info['NAME'])
+        self.nameInput.setEnabled(False)
+        # self.nameInput.initText = '请输入姓名'
+        # self.nameInput.setTextMargins(5, 5, 5, 5)
+        # self.nameInput.mousePressEvent = lambda x: self.inputClick(self.nameInput)
 
         # 性别输入框
         self.genderInput = QLineEdit()
         self.genderInput.setFixedSize(400, 40)
-        self.genderInput.setText(self.user_info['GENDER'])
-        self.genderInput.initText = '请输入性别'
-        self.genderInput.setTextMargins(5, 5, 5, 5)
-        self.genderInput.mousePressEvent = lambda x: self.inputClick(self.genderInput)
+        self.genderInput.setText('性别：' + self.user_info['GENDER'])
+        self.genderInput.setEnabled(False)
+        # self.genderInput.initText = '请输入性别'
+        # self.genderInput.setTextMargins(5, 5, 5, 5)
+        # self.genderInput.mousePressEvent = lambda x: self.inputClick(self.genderInput)
 
         # 密码
         # self.passwordInput = QLineEdit()
@@ -86,10 +88,11 @@ class UserInfo(QGroupBox):
         # 昵称
         self.nickInput = QLineEdit()
         self.nickInput.setFixedSize(400, 40)
-        self.nickInput.setText(self.user_info['NICKNAME'])
-        self.nickInput.initText = '请输入昵称'
-        self.nickInput.setTextMargins(5, 5, 5, 5)
-        self.nickInput.mousePressEvent = lambda x: self.inputClick(self.nickInput)
+        self.nickInput.setText('昵称：' + self.user_info['NICKNAME'])
+        self.nickInput.setEnabled(False)
+        # self.nickInput.initText = '请输入昵称'
+        # self.nickInput.setTextMargins(5, 5, 5, 5)
+        # self.nickInput.mousePressEvent = lambda x: self.inputClick(self.nickInput)
 
         # 信誉积分
         self.creditInput = QLineEdit()
@@ -163,16 +166,21 @@ class UserInfo(QGroupBox):
     #     self.after_close.emit(self.stu_info)
 
     def submitFunction(self):
-        if not self.creditInput.text().isalnum():
-            print('信誉积分输入错误')
-            return
-        self.user_info['ID'] = self.idInput.text()
-        self.user_info['NAME'] = self.nameInput.text()
-        self.user_info['GENDER'] = self.genderInput.text()
-        self.user_info['NICK'] = self.nickInput.text()
         self.user_info['CREDIT'] = int(self.creditInput.text())
         self.close()
         self.after_close.emit(self.user_info)
+
+    # def submitFunction(self):
+    #     if not self.creditInput.text().isalnum():
+    #         print('信誉积分输入错误')
+    #         return
+    #     self.user_info['ID'] = self.idInput.text()
+    #     self.user_info['NAME'] = self.nameInput.text()
+    #     self.user_info['GENDER'] = self.genderInput.text()
+    #     self.user_info['NICK'] = self.nickInput.text()
+    #     self.user_info['CREDIT'] = int(self.creditInput.text())
+    #     self.close()
+    #     self.after_close.emit(self.user_info)
 
     def initUI(self):
         self.setFixedSize(422, 400)
