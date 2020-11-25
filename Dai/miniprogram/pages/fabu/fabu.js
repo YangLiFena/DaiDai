@@ -77,5 +77,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  send: function() {
+    wx.requestSubscribeMessage({
+      tmplIds: ['RD1ESmvxwfPh4hS_If6EQuLFcC5W4Yn9j2ndfy4ZqN0', 'sEX6_fydKEFlqrHXh3j2H0fJAGc3wSqjMK25ABVxOmo'],
+      success (res) { }
+    })
+    wx.cloud.callFunction({
+      name: "cancel_order",
+      data: {}
+    }).then(res => {
+      console.log("推送消息成功", res)
+    }).catch(res => {
+      console.log("推送消息失败", res)
+    })
   }
 })

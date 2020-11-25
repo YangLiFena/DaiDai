@@ -50,7 +50,7 @@ page {
 
 .top1 {
   padding-top: 30%;
-  font-size: 50rpx;
+  font-size: 46rpx;
   display: flex;
   align-items:center;
   justify-content:center;
@@ -58,8 +58,22 @@ page {
 
 .top2 {
   height: 150rpx;
+  color: #888888;
 }
 
 .button {
   padding-top: 10%;
+  margin: 0 auto;
+  width: 65%;
+}
+
+.button1 {
+  padding: 10%;
+  width: 65%;
+}
+
+.abc {
+  width: 100%;
+  border-radius: 10px;
+  /* border: 2px solid gainsboro; */
 }
