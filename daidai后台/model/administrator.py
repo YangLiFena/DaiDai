@@ -446,7 +446,9 @@ class OrderManage(QGroupBox):
         if msgBox.exec_() == QMessageBox.AcceptRole:
             ans = DataBase.delete_order(orderId)
             if ans:
+                reply = QMessageBox.about(self, "删除成功", "删除成功")
                 self.searchFunction()
+
 
 
     def initUI(self):
@@ -695,6 +697,7 @@ class UserManage(QGroupBox):
         print('update:  ', user_info['CREDIT'])
         ans = DataBase.update_credit(user_info)
         if ans:
+            reply = QMessageBox.about(self, "更改成功", "更改成功")
             self.searchFunction()
 
 
@@ -726,6 +729,7 @@ class UserManage(QGroupBox):
         if msgBox.exec_() == QMessageBox.AcceptRole:
             ans = DataBase.delete_user(sno)
             if ans:
+                reply = QMessageBox.about(self, "删除成功", "删除成功")
                 self.searchFunction()
 
     def initUI(self):
@@ -891,7 +895,7 @@ class AuditManage(QWidget):
         itemAccess = QToolButton(self.table)
         itemAccess.setFixedSize(100, 30)
         itemAccess.setText('同意认证')
-        itemAccess.clicked.connect(lambda: self.accessFunction(val[0]))
+        itemAccess.clicked.connect(lambda: self.accessFunction(val))
         itemAccess.setStyleSheet('''
         *{
             color: white;
@@ -966,14 +970,17 @@ class AuditManage(QWidget):
     #         if ans:
     #             self.searchFunction()
 
-    def accessFunction(self, sno):
+    def accessFunction(self, val):
         msgBox = QMessageBox(QMessageBox.Warning, "请确认!", '请确认该用户是否通过审核!',
                              QMessageBox.NoButton, self)
         msgBox.addButton("确认", QMessageBox.AcceptRole)
         msgBox.addButton("取消", QMessageBox.RejectRole)
         if msgBox.exec_() == QMessageBox.AcceptRole:
-            ans = DataBase.user_access(sno)
+            ans = DataBase.user_access(val[0])
             if ans:
+                print(val[3])
+                DataBase.call_cloud_function(val[3])
+                reply = QMessageBox.about(self, "更改成功", "更改成功")
                 self.searchFunction()
 
     def initUI(self):
