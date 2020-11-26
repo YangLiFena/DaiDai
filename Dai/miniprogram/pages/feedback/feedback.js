@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loading: false,
+    
     contact: '',
     content: ''
   },
@@ -21,10 +21,11 @@ Page({
       contact: e.detail.value
     })
   },
-  formSubmit: function (e) {
-    let _that = this;
-    let content = e.detail.value.opinion;
-    let contact = e.detail.value.contact;
+
+  onSubmit: function(event) {
+    
+    let content = this.data.content;
+    let contact = this.data.contact;
     let regPhone = /^1[3578]\d{9}$/;
     let regEmail = /^[a-z\d_\-\.]+@[a-z\d_\-]+\.[a-z\d_\-]+$/i;
     if (content == "") {
@@ -41,66 +42,23 @@ Page({
       })
       return false
     }
-    if (contact == "" && content == "") {
-      wx.showModal({
-        title: '提示',
-        content: '反馈内容,手机号或者邮箱不能为空!',
-      })
-      return false
-    }
+  
     if ((!regPhone.test(contact) && !regEmail.test(contact)) || (regPhone.test(contact) && regEmail.test(contact))) { //验证手机号或者邮箱的其中一个对
       wx.showModal({
         title: '提示',
         content: '您输入的手机号或者邮箱有误!',
       })
       return false
-    } else {
-      // this.setData({
-      //   loading: true
-      // })
-      let model, system, platform;
-      wx.getSystemInfo({
-        success: function (res) {
-          model = res.model;
-          system = res.system;
-          platform = res.platform;
-        }
-      })
-      // wx.request({
-      //   url: url + '/util/feedback',
-      //   header: {
-      //     'content-type': 'application/x-www-form-urlencoded'
-      //   },
-      //   data: {
-      //     'content': content,
-      //     'contact': contact,
-      //     'device_model': model, //手机型号
-      //     'device_system ': system, //操作系统版本
-      //     'app_version': platform  //客户端平台
-      //   },
-      //   method: 'POST',
-      //   success: function (res) {
-      //     let status = res.data.status;
-      //     if (status == 1) {
-      //       _that.setData({
-      //         loading: false,
-      //         contact: '',
-      //         contant: ''
-      //       })
-      //       wx.showToast({
-      //         title: '成功',
-      //         icon: 'success',
-      //         duration: 1500
-      //       })
-      //     }
-      //   },
-      //   fail: function () {
-      //     console.log("意见反馈接口调用失败")
-      //   }
-      // })
     }
-  },
-  onSubmit: function(event) {
+    
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '确认要删除该支出类型?',
+    //   success: function (res) {
+    //    if (res.confirm) {}
+    //   }})
+
+
     console.log(event)
     yijian.add({
       data: {
@@ -109,9 +67,10 @@ Page({
       }
     }).then(res => {
       wx.showToast({
-        title: '添加成功',
+        title: '反馈成功',
         icon: 'success'
       })
     })
+      
   }
 })

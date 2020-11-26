@@ -9,7 +9,7 @@ Page({
     requestResult: '',
     // chatRoomEnvId: 'release-f8415a',
     chatRoomCollection: 'chatroom',
-    chatRoomGroupId: 'demo',
+    chatRoomGroupId: '',
     chatRoomGroupName: '聊天室',
 
     // functions for used in chatroom components
@@ -17,8 +17,12 @@ Page({
     getOpenID: null,
   },
 
-  onLoad: function() {
+  onLoad: function(options) {
     // 获取用户信息
+    console.log(options.roomId)
+    this.setData({
+      chatRoomGroupId: options.roomId
+    })
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {

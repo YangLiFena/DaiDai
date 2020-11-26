@@ -8,6 +8,7 @@
     </van-col>
     <van-col span="9" offset="1">
       <van-rate value="{{ value }}" size="{{ 20 }}" allow-half color="#ee0a24" void-color="#eee" void-icon="star"
+      readonly='true'
         bind:change="onChange" />
     </van-col>
   </van-row>

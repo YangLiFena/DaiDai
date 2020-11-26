@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 const print = db.collection('print');
+const app=getApp()
 Page({
   data: {
     array1: ['A4', 'A3', 'B5'],
@@ -101,15 +102,39 @@ Page({
     })
   },
   onSubmit: function(event) {
+    let printNum = this.data.printNum;
+    let ok = this.data.ok;
+    let regNum = /^\+?[1-9][0-9]*$/;
+  
+    if(!regNum.test(printNum)){
+      wx.showModal({
+        title: '提示',
+        content: '亲亲，请输入正确打印份数!',
+      })
+      return false
+    }
+
+    if(ok!="success"){
+      wx.showModal({
+        title: '提示',
+        content: '亲亲，请上传打印的文件!',
+      })
+      return false
+    }
+
     console.log(event)
     print.add({
       data: {
         size: this.data.array1[this.data.index1],
         way: this.data.array2[this.data.index2],
         color: this.data.array3[this.data.index3],
+        price: 1111,
         num: this.data.printNum,
         message: this.data.message,
-        ordetType: "打印"
+        avatarUrl:app.globalData.AVATAR,
+        status:"待接单",
+        nickName:app.globalData.NICKNAME,
+        orderType:"打印"
         // formId: event.detail.formId
       }
     }).then(res => {

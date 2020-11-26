@@ -3,12 +3,12 @@
   <form bindsubmit="formSubmit">
       <view class="content_wrap">
           <view class="content">
-              <textarea name="opinion" bindblur="optchange"  value="{{content}}" auto-height placeholder-class="placeholder" placeholder="期待您的反馈，我们将会不断改进(ง •̀_•́)ง" />
+              <textarea name="opinion" bindblur="optchange" maxlength="200" value="{{content}}" auto-height placeholder-class="placeholder" placeholder="期待您的反馈，我们将会不断改进(ง •̀_•́)ง" />
           </view>
       </view>  
       <view class="phone">
           <input name="contact" value="{{contact}}" bindblur="optchange1" placeholder-class="placeholder" placeholder="请留下您的手机号或邮箱，方便我们及时回复" />
       </view>
-      <button bindtap="onSubmit">提交</button>
+      <button formType="submit" bindtap="onSubmit"  >提交</button>
   </form>
 </view>

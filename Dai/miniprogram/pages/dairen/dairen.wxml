@@ -32,4 +32,12 @@
     <van-field value="{{money}}" placeholder="请输入打赏费用（元）" bind:blur="optchange" label="打赏费用" input-align="right">
     </van-field>
   </view>
+  <view>
+    <view class="page-section">
+      <view class="page-section-title"></view>
+      <view class="textarea-wrp">
+        <textarea value="{{message}}" auto-focus="true" maxlength="200" style="height: 7em" placeholder="请补充您的要求" bindblur="optchange5"/>
+      </view>
+  </view>
+</view>
   <van-submit-bar price="{{t}}" button-text="提交订单" bind:submit="onSubmit"/>

@@ -1,3 +1,5 @@
+var app=getApp()
+
 Page({
   data: {
     catelist:[
@@ -28,58 +30,75 @@ Page({
     ],
       ne:[],
   },
-
   onLoad: function (options) {
-    wx.cloud.init();
+    var that=this
     const db = wx.cloud.database();
     const users = db.collection("Users")
-    users.get({
-      success: res => {
-        if (res.data.length == 0) {
-          wx.redirectTo({
-            url: '../login_/login_',
+    wx.login({  
+      success:function(res){  
+        wx.request({  
+            //获取openid接口  
+          url: 'https://api.weixin.qq.com/sns/jscode2session',  
+          data:{  
+            appid:"wx4184fe0dc5886089",  
+            secret:"cc2bd71e5125bbb08b79751045e3da32",  
+            js_code:res.code,  
+            grant_type:'authorization_code'  
+          },  
+          method:'GET',  
+          success:function(res){
+            app.globalData.OPEN_ID = res.data.openid;//获取到的openid  
+            app.globalData.SESSION_KEY = res.data.session_key;//获取到session_key  
+            users.where({
+              _openid: res.data.openid
+            }).get({
+              success: res => {
+                if (res.data.length == 0) {
+                  wx.redirectTo({
+                    url: '../login_/login_',
+                  })
+                }
+              }
+            })
+            var myid=app.globalData.OPEN_ID
+            db.collection('Users').where({
+              _openid:myid
+            }).get({
+             success:res =>{     
+               that.setData({
+                ne:res.data
+               })
+               console.log(that.data.ne)
+             }
+             })   
+          }  
+        })  
+      }  
+    })
+    db.collection('StudentCard').where({
+      _openid:app.globalData.OPEN_ID
+    }).get({
+     success: res => {
+       if (res.data.length!=0&&res.data[0].access==0) {
+         wx.redirectTo({
+           url: '../shenhe/shenhe',
+         })
+       }
+     }
+   })  
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              app.globalData.AVATAR = res.userInfo.avatarUrl;
+              app.globalData.NICKNAME = res.userInfo.nickName;
+            }
           })
         }
       }
     })
-    var _this = this;
-    db.collection('Users').get({
-      //如果查询成功的话
-     success:res =>{     
-       //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值
-       this.setData({
-        ne:res.data
-       })
-     }
-     })   
   },
-  
-//   onLoad: function (options)
-// {
-  
-//   var that = this;
-//   // 查看是否授权
-//   wx.getSetting({
-//   success(res) {
-//   if (res.authSetting['scope.userInfo']) {
-//   // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-//   wx.getUserInfo({
-//   success: function (res) {
-//   console.log(res)
-//   // console.log(res.userInfo)
-//   that.setData({
-//   nickName: res.userInfo.nickName, //昵称
-//   avatarUrl: res.userInfo.avatarUrl //头像
-//   })
-//   }
-//   })
-//   }else{
-//   wx.redirectTo({
-//   url: '/pages/login_/login_', //跳转到授权页面
-//   })
-//   }
-//   }
-//   })
-//   }
 })
 

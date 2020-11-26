@@ -1,11 +1,16 @@
 const db = wx.cloud.database();
 const renyuan = db.collection('renyuan');
+const users = db.collection('Users')
+const app = getApp()
+var sno1
+var sno2
+var roomId
 Page({
   data: {
     tasks: [],
   },
   pageData: {
-    skip: 0
+    skip: 0,
   },
   onLoad: function(options) {
     this.getData();
@@ -39,9 +44,43 @@ Page({
       })
     })
   },
-  urlTurn: function() {
+  urlTurn: function(options) {
+    console.log(options.currentTarget.dataset.id)
+    var id = options.currentTarget.dataset.id;
+    renyuan.get().then(res => {
+      var i;
+      for(i = 0; i < res.data.length; i++)
+      {
+        if(res.data[i]._id == id)
+        {
+          sno1 = res.data[i].sno
+        }
+      }
+    })
+    console.log('--------')
+    console.log(app.globalData)
+    users.get().then(res => {
+      var i;
+      for(i = 0; i < res.data.length; i++)
+      {
+        if(res.data[i]._openid == app.globalData.OPEN_ID)
+        {
+          sno2 = res.data[i].sno
+        }
+      }
+    })
+    console.log(sno1)
+    console.log(sno2)
+    if(sno1 > sno2)
+    {
+      roomId = sno2 + sno1
+    }
+    else
+    {
+      roomId = sno1 + sno2
+    }
     wx.redirectTo({
-      url: '../im/room/room',
+      url: `../im/room/room?roomId=${roomId}`,
     })
   }
 })

@@ -27,8 +27,10 @@ Page({
   //在页面加载完成时调用
  
   onGetUserInfo: function(e) {
+    
     const db = wx.cloud.database();
     const users = db.collection("Users")
+    const flag_ = db.collection("identity_flag")
     console.log(e)
     if (e.detail.userInfo) {
       app.globalData.AVATAR = e.detail.userInfo.avatarUrl
@@ -40,14 +42,23 @@ Page({
           head_picture:e.detail.userInfo.avatarUrl,
           sex:e.detail.userInfo.gender,
         },
-
+        
         success: function(res) {
           // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-          console.log(res)
+          console.log("res")
 
         }
       })    
+      // db.collection('identity_flag').add({
+      //   // data 字段表示需新增的 JSON 数据
+      //   data: {
+      //     flag:0
+      //   }}),
 
+      wx.requestSubscribeMessage({
+        tmplIds: ['RD1ESmvxwfPh4hS_If6EQuLFcC5W4Yn9j2ndfy4ZqN0', 'sEX6_fydKEFlqrHXh3j2H0fJAGc3wSqjMK25ABVxOmo'],
+        success (res) { }
+      })
        console.log(this.data.name),
       wx.setStorageSync('login', true)
       wx.redirectTo({

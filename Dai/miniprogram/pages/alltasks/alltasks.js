@@ -23,10 +23,8 @@ Page({
       }
     ],
     index: 0,
-    personal: true,
     "userInfo": null,
     quanbu: "border-bottom: 3px solid #EF4143;color:#EF4143;font-weight:bold",
-    details:""
   },
 
   /**
@@ -88,30 +86,20 @@ Page({
   onShareAppMessage: function () {
 
   },
-  personal: function () {
-    this.setData({
-      personal: false
-    })
-  }, exit: function () {
-    this.setData({
-      personal: true
-    })
-  },
-  preview: function () {
-    var avatar = this.data.userInfo.avatarUrl;
-    wx.previewImage({
-      urls: [avatar]
-    })
-  },
+
   item: function (options) {
-    this.getMsg(0);
+    this.getMsg();
   },
-  getMsg(status) {
+  //获取数据库信息
+  getMsg() {
     var that = this;
+    const _=db.command
     db.collection('print').where({
-      status:"待接单"
+      status:"待接单",
+      orderType:_.neq('打印')//任务大厅无打印单
     }).get({
       success: function(res) {
+        res.data.reverse()//最近发单的在上面
        that.setData({ data: res.data });
       }
     })
@@ -136,7 +124,7 @@ Page({
             url: `../dairenxiang/dairenxiang?id=${id}`,
           })
           break;
-          case "带饭":
+          case "带货":
             wx.navigateTo({
             url: `../daihuoxiang/daihuoxiang?id=${id}`,
           })
@@ -166,9 +154,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.redirectTo({
-            url: '../alltasks/alltasks'
-          })
+          that.onLoad()//刷新页面
         }
       }
     })

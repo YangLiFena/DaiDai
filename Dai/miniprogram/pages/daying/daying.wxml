@@ -47,7 +47,7 @@
     <view class="page-section">
       <view class="page-section-title"></view>
       <view class="textarea-wrp">
-        <textarea value="{{message}}" auto-focus="true" style="height: 7em" placeholder="请输入留言" bindblur="optchange5"/>
+        <textarea value="{{message}}" auto-focus="true" maxlength="200" style="height: 7em" placeholder="请输入留言" bindblur="optchange5"/>
       </view>
   </view>
 </view>
