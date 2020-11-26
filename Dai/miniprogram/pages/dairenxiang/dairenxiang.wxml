@@ -19,5 +19,20 @@
         <van-field value="{{ tasks1.money }} 元 " disabled  label="打赏费用" input-align="right">
         </van-field>
       </view>
+      <view>
+        <van-field value="{{ tasks1.credit }}" disabled  label="最低信誉积分" input-align="right">
+        </van-field>
+      </view>
+      <view class="page-section">
+          <view class="page-section-title"></view>
+          <view class="textarea-wrp">
+            <textarea disabled value="订单备注" auto-focus="true" style="height: 7em">
+              <view class="line1"></view>
+              <view class="message">
+                <text>{{tasks1.message}}</text>
+              </view>
+            </textarea>
+          </view>
+  </view>
 
     </view>

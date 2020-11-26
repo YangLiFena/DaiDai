@@ -28,7 +28,8 @@ Page({
     time: Nowtime,
     message: '',
     money: '',
-    flag:false
+    flag:false,
+    credit: ''
   },
   chooseLocation1: function(e) {
     wx.chooseLocation({
@@ -82,6 +83,12 @@ Page({
     console.log('textarea改变，携带值为', e.detail.value)
     this.setData({
       good: e.detail.value
+    })
+  },
+  optchange4: function(e) {
+    console.log('textarea改变，携带值为', e.detail.value)
+    this.setData({
+      credit: e.detail.value
     })
   },
   optchange: function(e) {
@@ -167,7 +174,8 @@ Page({
         status:"待接单",
         nickName:app.globalData.NICKNAME,
         orderType:"带货",
-        details:this.data.good+"送到"+this.data.locationObj2.name
+        details:this.data.good+"送到"+this.data.locationObj2.name,
+        credit: this.data.credit
       }
     }).then(res => {
       wx.showToast({

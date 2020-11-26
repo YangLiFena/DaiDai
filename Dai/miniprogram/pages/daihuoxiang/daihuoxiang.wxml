@@ -24,13 +24,17 @@
         </van-field>
       </view>
       <view>
+        <van-field value="{{ tasks.credit }}" disabled  label="最低信誉积分" input-align="right">
+        </van-field>
+      </view>
+      <view>
         <view class="page-section">
           <view class="page-section-title"></view>
           <view class="textarea-wrp">
             <textarea disabled value="订单备注" auto-focus="true" style="height: 7em">
               <view class="line1"></view>
               <view class="message">
-                {{ tasks.message }}
+                <text>{{tasks.message}}</text>
               </view>
             </textarea>
           </view>

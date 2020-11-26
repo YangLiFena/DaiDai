@@ -27,7 +27,7 @@
             <textarea disabled value="订单备注" auto-focus="true" style="height: 7em">
               <view class="line1"></view>
               <view class="message">
-                {{ tasks2.message }}
+                <text>{{tasks2.message}}</text>
               </view>
             </textarea>
           </view>

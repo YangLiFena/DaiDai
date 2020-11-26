@@ -35,6 +35,10 @@
     <van-field value="{{money}}" placeholder="请输入打赏费用（元）" bind:blur="optchange" label="打赏费用" input-align="right">
     </van-field>
   </view>
+  <view>
+    <van-field value="{{credit}}" placeholder="请输入接单最低信誉积分" bind:blur="optchange4" label="信誉积分" input-align="right">
+    </van-field>
+  </view>
 <view>
     <view class="page-section">
       <view class="page-section-title"></view>

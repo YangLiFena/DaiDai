@@ -2,7 +2,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -39,6 +39,7 @@
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "plugin": {
       "list": []
@@ -96,6 +97,78 @@
         {
           "name": "mine",
           "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daihuoxiang",
+          "pathName": "pages/daihuoxiang/daihuoxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "dairenxiang",
+          "pathName": "pages/dairenxiang/dairenxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "dayinxiang",
+          "pathName": "pages/dayinxiang/dayinxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "login_",
+          "pathName": "pages/login_/login_",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "alltasks",
+          "pathName": "pages/alltasks/alltasks",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renzheng",
+          "pathName": "pages/renzheng/renzheng",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daying",
+          "pathName": "pages/daying/daying",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "im",
+          "pathName": "pages/im/im",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "fabu",
+          "pathName": "pages/fabu/fabu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "commentDetail",
+          "pathName": "pages/commentDetail/commentDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "shenhe",
+          "pathName": "pages/shenhe/shenhe",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "identity",
+          "pathName": "pages/identity/identity",
           "scene": null
         }
       ]

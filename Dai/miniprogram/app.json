@@ -24,7 +24,9 @@
     "pages/alltasks/alltasks",
     "pages/renzheng/renzheng",
     "pages/fabu/fabu",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/commentDetail/commentDetail",
+    "pages/shenhe/shenhe"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -32,6 +34,11 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "带代",
     "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {

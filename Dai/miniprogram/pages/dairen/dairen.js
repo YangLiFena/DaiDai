@@ -83,6 +83,12 @@ Page({
       t: Number(this.data.money) * 100
     })
   },
+  optchange4: function(e) {
+    console.log('textarea改变，携带值为', e.detail.value)
+    this.setData({
+      credit: e.detail.value
+    })
+  },
   optchange5: function(e) {
     console.log('textarea改变，携带值为', e.detail.value)
     this.setData({
@@ -152,7 +158,8 @@ Page({
         nickName:app.globalData.NICKNAME,
         orderType:"带人",
         message:this.data.message,
-        details:this.data.locationObj1.name+'到'+this.data.locationObj2.name
+        details:this.data.locationObj1.name+'到'+this.data.locationObj2.name,
+        credit: this.data.credit
       }
     }).then(res => {
       wx.showToast({
