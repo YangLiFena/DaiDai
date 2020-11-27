@@ -29,7 +29,7 @@ Page({
     message: '',
     money: '',
     flag:false,
-    credit: ''
+    credit: '',
   },
   chooseLocation1: function(e) {
     wx.chooseLocation({
@@ -161,32 +161,42 @@ Page({
       })
       return false
     }
-    print.add({
-      data: {
-        from: this.data.locationObj1,
-        to: this.data.locationObj2,
-        date: this.data.date,
-        time: this.data.time,
-        good: this.data.good,
-        money: this.data.money,
-        message: this.data.message,
-        avatarUrl:app.globalData.AVATAR,
-        status:"待接单",
-        nickName:app.globalData.NICKNAME,
-        orderType:"带货",
-        details:this.data.good+"送到"+this.data.locationObj2.name,
-        credit: this.data.credit
+    var that=this
+    db.collection('Users').where({
+      _openid:app.globalData.OPEN_ID
+    }).get({
+      success:function(res){
+        console.log(res)
+        print.add({
+          data: {
+            from: that.data.locationObj1,
+            to: that.data.locationObj2,
+            date: that.data.date,
+            time: that.data.time,
+            good: that.data.good,
+            money: that.data.money,
+            message: that.data.message,
+            avatarUrl:app.globalData.AVATAR,
+            status:"待接单",
+            nickName:app.globalData.NICKNAME,
+            orderType:"带货",
+            details:that.data.good+"送到"+that.data.locationObj2.name,
+            credit: that.data.credit,
+            sendSid:res.data[0].sid,//发单人学号
+          }
+        }).then(res => {
+          wx.showToast({
+            title: '提交订单成功！',
+            icon: 'success',
+            success: res2 => {
+              wx.redirectTo({
+                url: `../daihuoxiang/daihuoxiang?id=${res._id}`,
+              })
+            }
+          }) 
+        })
       }
-    }).then(res => {
-      wx.showToast({
-        title: '提交订单成功！',
-        icon: 'success',
-        success: res2 => {
-          wx.redirectTo({
-            url: `../daihuoxiang/daihuoxiang?id=${res._id}`,
-          })
-        }
-      }) 
     })
+
   }
 })

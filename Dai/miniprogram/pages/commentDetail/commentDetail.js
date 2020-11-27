@@ -12,6 +12,7 @@ Page({
     commentAvatar:'',//被评价人的头像
     commentNickName:'',
     completeTime:'',
+    // value: 5
   },
   onLoad: function(options) {
     this.id=options.id
@@ -28,8 +29,7 @@ Page({
             commentNickName:d.name,
             })
           }
-        })
-        
+        })      
       }
     })
   },
@@ -52,13 +52,15 @@ Page({
     db.collection('print').doc(this.id).update({
       data:{
         status:'已评价',
+        commentText:this.content,//评价内容
+        commentPoint:this.points,//评价分数
       },
     })
     db.collection('print').doc(this.id).get().then(res => {
       const _ = db.command
       var myid=res.data._openid
       db.collection('Users').where({
-        _openid:myid
+        _openid:res.data.orderTaker//评价加入接单人
       }).update({
         data:{
           get: _.push([this.newcomment])

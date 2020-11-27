@@ -22,5 +22,6 @@ App({
     SESSION_KEY:'',//储存获取到session_key
     AVATAR:'',//头像
     NICKNAME:'',//昵称
+    SEX:'',//性别
   }
 })

@@ -123,30 +123,38 @@ Page({
     }
 
     console.log(event)
-    print.add({
-      data: {
-        size: this.data.array1[this.data.index1],
-        way: this.data.array2[this.data.index2],
-        color: this.data.array3[this.data.index3],
-        price: 1111,
-        num: this.data.printNum,
-        message: this.data.message,
-        avatarUrl:app.globalData.AVATAR,
-        status:"待接单",
-        nickName:app.globalData.NICKNAME,
-        orderType:"打印"
-        // formId: event.detail.formId
+    var that=this
+    db.collection('Users').where({
+      _openid:app.globalData.OPEN_ID
+    }).get({
+      success:function(res){
+        print.add({
+          data: {
+            size: that.data.array1[that.data.index1],
+            way: that.data.array2[that.data.index2],
+            color: that.data.array3[that.data.index3],
+            price: 1111,
+            num: that.data.printNum,
+            message: that.data.message,
+            avatarUrl:app.globalData.AVATAR,
+            status:"待接单",
+            nickName:app.globalData.NICKNAME,
+            orderType:"打印",
+            sendSid:res.data[0].sid,//发单人学号
+          }
+        }).then(res => {
+          wx.showToast({
+            title: '提交订单成功！',
+            icon: 'success',
+            success: res2 => {
+              wx.redirectTo({
+                url: `../dayinxiang/dayinxiang?id=${res._id}`,
+              })
+            }
+          }) 
+        })
       }
-    }).then(res => {
-      wx.showToast({
-        title: '提交订单成功！',
-        icon: 'success',
-        success: res2 => {
-          wx.redirectTo({
-            url: `../dayinxiang/dayinxiang?id=${res._id}`,
-          })
-        }
-      }) 
     })
+
   }
 })

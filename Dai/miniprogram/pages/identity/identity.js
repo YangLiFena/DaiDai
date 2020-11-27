@@ -1,5 +1,6 @@
 // pages/identity/identity.js
 const db = wx.cloud.database()
+var app=getApp()
 Page({
   data: {
     animation1: {},
@@ -136,19 +137,50 @@ Page({
       let flagtext =this.data.flagtext
       if(flagtext){
       db.collection('StudentCard').add({
-      data: {
-        name:this.data.name,
-        sid:this.data.sid,
-        addr:this.data.addr,
-        access: 0
-      },
-      success: function(res) {
-        console.log(res)
-      }
-    })}
+        data: {
+          name:this.data.name,
+          sid:this.data.sid,
+          addr:this.data.addr,
+          access: 0
+        },
+        success: function(res) {
+          console.log(res)
+        }
+      })
+      var that=this
+      wx.getSetting({
+        success (res){
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            wx.getUserInfo({
+              success: function(res) {
+                db.collection('Users').add({
+                  data: {//全局变量放mine里获取了
+                    name:app.globalData.NICKNAME,//昵称
+                    head_picture:app.globalData.AVATAR,//头像
+                    sex:app.globalData.SEX,//性别
+                    sid:that.data.sid,//学号
+                    sname:that.data.name,//姓名
+                    credit:100,//信誉分初始100
+                  },
+                  success: function(res) {
+                    console.log(res)
+                  }
+                })
+              }
+            })
+          }
+        }
+      })
+
+    }
   },
   jmpHomePage:function(options){ 
     //console.log(this.data.name);
+    wx.requestSubscribeMessage({
+      tmplIds: ['RD1ESmvxwfPh4hS_If6EQuLFcC5W4Yn9j2ndfy4ZqN0', 'sEX6_fydKEFlqrHXh3j2H0fJAGc3wSqjMK25ABVxOmo'],
+      success (res) { }
+    })
     let flagtext =this.data.flagtext
     if(flagtext){
     this.addStudent();
@@ -157,27 +189,7 @@ Page({
     })
   }
   },
-  
-  // //输入错误提示
-  // warning: function () {
-  //   var that = this;
-  //   //动画
-  //   var animation = wx.createAnimation({
-  //     duration: 200,
-  //     timingFunction: "ease-in-out",
-  //     delay: 0
-  //   });
-  //   //显示
-  //   that.setData({ "hiddent": false })
-  //   //开始动画，导入动画
-  //   animation.translateY(-60).step();
-  //   that.setData({ "animation1": animation.export() })
-  //   setTimeout(function () {
-  //     that.setData({ "hiddent": true })
-  //     animation.translateY(0).step();
-  //     that.setData({ "animation1": animation.export() })
-  //   }, 1500)
-  // },
+
   fail: function (res) {
     console.log(res.errMsg)
   },

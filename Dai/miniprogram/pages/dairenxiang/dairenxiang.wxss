@@ -22,6 +22,13 @@
   background-color: #D8D8D8;
 }
 
+.line2 {
+  margin: 0 auto;
+  height: 0.8px;
+  margin-top: 3%;
+  background-color: #D8D8D8;
+}
+
 .textTop {
   font-size: 40rpx;
   font-weight: bolder;
@@ -85,4 +92,14 @@ textarea {
   font-size: 28rpx;
   padding-top: 3%;
   padding-left: 5rpx;
+}
+
+
+.text111 {
+  padding-top: 5%;
+}
+
+.beizhu {
+  padding-left: 3%;
+  padding-right: 3%;
 }

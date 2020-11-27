@@ -146,31 +146,41 @@ Page({
       return false
     }
     console.log(event)
-    print.add({
-      data: {
-        from: this.data.locationObj1,
-        to: this.data.locationObj2,
-        date: this.data.date,
-        time: this.data.time,
-        money: this.data.money,
-        avatarUrl:app.globalData.AVATAR,
-        status:"待接单",
-        nickName:app.globalData.NICKNAME,
-        orderType:"带人",
-        message:this.data.message,
-        details:this.data.locationObj1.name+'到'+this.data.locationObj2.name,
-        credit: this.data.credit
+    var that=this
+    db.collection('Users').where({
+      _openid:app.globalData.OPEN_ID
+    }).get({
+      success:function(res){
+        console.log(res)
+        print.add({
+          data: {
+            from: that.data.locationObj1,
+            to: that.data.locationObj2,
+            date: that.data.date,
+            time: that.data.time,
+            money: that.data.money,
+            avatarUrl:app.globalData.AVATAR,
+            status:"待接单",
+            nickName:app.globalData.NICKNAME,
+            orderType:"带人",
+            message:that.data.message,
+            details:that.data.locationObj1.name+'到'+that.data.locationObj2.name,
+            credit: that.data.credit,
+            sendSid:res.data[0].sid,//发单人学号
+          }
+        }).then(res => {
+          wx.showToast({
+            title: '提交订单成功！',
+            icon: 'success',
+            success: res2 => {
+              wx.redirectTo({
+                url: `../dairenxiang/dairenxiang?id=${res._id}`,
+              })
+            }
+          }) 
+        })
       }
-    }).then(res => {
-      wx.showToast({
-        title: '提交订单成功！',
-        icon: 'success',
-        success: res2 => {
-          wx.redirectTo({
-            url: `../dairenxiang/dairenxiang?id=${res._id}`,
-          })
-        }
-      }) 
     })
+
   }
 })

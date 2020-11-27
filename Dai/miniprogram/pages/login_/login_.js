@@ -35,30 +35,16 @@ Page({
     if (e.detail.userInfo) {
       app.globalData.AVATAR = e.detail.userInfo.avatarUrl
       app.globalData.NICKNAME = e.detail.userInfo.nickName
-      db.collection('Users').add({
+      app.globalData.SEX = e.detail.userInfo.gender
+      /*db.collection('Users').add({
         // data 字段表示需新增的 JSON 数据
         data: {
           name:e.detail.userInfo.nickName,
           head_picture:e.detail.userInfo.avatarUrl,
           sex:e.detail.userInfo.gender,
         },
-        
-        success: function(res) {
-          // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-          console.log("res")
+      })    */
 
-        }
-      })    
-      // db.collection('identity_flag').add({
-      //   // data 字段表示需新增的 JSON 数据
-      //   data: {
-      //     flag:0
-      //   }}),
-
-      wx.requestSubscribeMessage({
-        tmplIds: ['RD1ESmvxwfPh4hS_If6EQuLFcC5W4Yn9j2ndfy4ZqN0', 'sEX6_fydKEFlqrHXh3j2H0fJAGc3wSqjMK25ABVxOmo'],
-        success (res) { }
-      })
        console.log(this.data.name),
       wx.setStorageSync('login', true)
       wx.redirectTo({

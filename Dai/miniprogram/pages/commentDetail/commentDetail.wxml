@@ -1,4 +1,4 @@
-<view class='top1'><text >服务评星</text></view>
+<!-- <view class='top1'><text >服务评星</text></view>
 <view class="line"></view>
 <view class='message'><text >完成时间：{{completeTime}}</text></view>
 <view class="pad">
@@ -32,4 +32,46 @@
 
   </form>
 </view>
-<button bindtap="onSubmit">提交评价</button>
+<button bindtap="onSubmit">提交评价</button> -->
+
+
+<view class="pad">
+  <text class="textTop">服务投诉</text>
+</view>
+<view class="line"></view>
+
+<view class="textarea">
+  <form bindsubmit="formSubmit">
+    <view>
+      <textarea name="opinion" bindblur="optchange"  value="{{content}}" auto-height placeholder-class="placeholder" placeholder="请留下你的评价" />
+    </view>
+  </form>
+</view>
+
+
+
+<view class="pad">
+  <text class="textTop">服务评星</text>
+</view>
+<view class="line"></view>
+
+<view class="abc">
+<van-col offset="2">
+  <view>
+      <view class="avatar">
+        <image src="{{commentAvatar}}" />
+      </view>
+      <view class="nickName">
+        <text class="nickname">{{commentNickName}}</text>
+      </view>
+  </view>
+  </van-col>
+  <van-col offset="2">
+      <van-rate value="{{ value }}" size="{{ 40 }}" allow-half color="#fb8b05" void-color="#c0c0c0" void-icon="star"
+        bind:change="onChange" />
+  </van-col>
+</view>
+
+<view class='button'>
+  <button class='bcd' bindtap="onSubmit">提交</button>
+</view>
