@@ -17,7 +17,7 @@
   <view class="section">
     <block>
       <van-cell title="单/双面打印" is-link>
-        <picker bindchange="optchang2" value="{{index2}}" range="{{array2}}">
+        <picker bindchange="optchange2" value="{{index2}}" range="{{array2}}">
           <view class="picker">
             当前选择：{{array2[index2]}}
           </view>

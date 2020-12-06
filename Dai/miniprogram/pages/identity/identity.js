@@ -141,7 +141,8 @@ Page({
           name:this.data.name,
           sid:this.data.sid,
           addr:this.data.addr,
-          access: 0
+          // 修改
+          access: 1
         },
         success: function(res) {
           console.log(res)
