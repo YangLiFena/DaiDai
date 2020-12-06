@@ -5,10 +5,10 @@
     "pages/daifan/daifan",
     "pages/pingjia/pingjia",
     "pages/renwuhuo/renwuhuo",
+    "pages/login_/login_",
     "pages/tousu/tousu",
     "pages/renyuan/renyuan",
     "pages/daying/daying",
-    "pages/login_/login_",
     "pages/identity/identity",
     "pages/homepage/homepage",
     "pages/message/message",
@@ -25,8 +25,7 @@
     "pages/renzheng/renzheng",
     "pages/fabu/fabu",
     "pages/im/room/room",
-    "pages/commentDetail/commentDetail",
-    "pages/shenhe/shenhe"
+    "pages/commentDetail/commentDetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -34,11 +33,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "带代",
     "navigationBarTextStyle": "black"
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {

@@ -27,23 +27,26 @@ Page({
   //在页面加载完成时调用
  
   onGetUserInfo: function(e) {
-    
     const db = wx.cloud.database();
     const users = db.collection("Users")
-    const flag_ = db.collection("identity_flag")
     console.log(e)
     if (e.detail.userInfo) {
       app.globalData.AVATAR = e.detail.userInfo.avatarUrl
       app.globalData.NICKNAME = e.detail.userInfo.nickName
-      app.globalData.SEX = e.detail.userInfo.gender
-      /*db.collection('Users').add({
+      db.collection('Users').add({
         // data 字段表示需新增的 JSON 数据
         data: {
           name:e.detail.userInfo.nickName,
           head_picture:e.detail.userInfo.avatarUrl,
           sex:e.detail.userInfo.gender,
         },
-      })    */
+
+        success: function(res) {
+          // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+          console.log("res")
+
+        }
+      })    
 
        console.log(this.data.name),
       wx.setStorageSync('login', true)

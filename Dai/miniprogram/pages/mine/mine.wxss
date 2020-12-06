@@ -47,8 +47,7 @@ page {
   flex:1;
 }
 .mine_cate image{
-  width: 70%;
-  padding-left: 15%;
+  width: 100%;
 }
 
 .view_3{

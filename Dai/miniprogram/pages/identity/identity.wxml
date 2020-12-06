@@ -10,7 +10,7 @@
       <view>
         <text>上传并提交您的证件照片</text>
       </view>
-      <view class="img" bindtap="getStudentCard" bind:after-read="afterRead">
+      <view class="img" bindtap="getStudentCard" >
       <image src="{{getStudentCard}}"></image>
     </view>
     <view class="zi1">
@@ -23,16 +23,16 @@
     <view class="name">
       <view>
         <text>姓名</text>
-        <input class="weui-input" name="text" type="text" bindinput="nameInput" value="{{name}}" />
+        <input class="weui-input" type="text" maxlength="10" bindinput="nameInput" />
       </view>
       <view>
         <text>学号</text>
-        <input class="weui-input" name="number" type="number" maxlength="9" bindinput="sid" value="{{sid}}" />
+        <input class="weui-input" type="number" maxlength="10" bindinput="sid" />
       </view>
     </view>
 
     <view class="buttonView">
-      <button formType="submit" class="submit" bindtap="jmpHomePage">提交审核</button>
+      <button form-type="submit" class="submit" bindtap="jmpHomePage">提交审核</button>
     </view>
   </view>
 </form>

@@ -183,6 +183,7 @@ Page({
             details:that.data.good+"送到"+that.data.locationObj2.name,
             credit: that.data.credit,
             sendSid:res.data[0].sid,//发单人学号
+            takeSid:null,
           }
         }).then(res => {
           wx.showToast({

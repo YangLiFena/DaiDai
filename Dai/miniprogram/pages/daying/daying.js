@@ -141,6 +141,8 @@ Page({
             nickName:app.globalData.NICKNAME,
             orderType:"打印",
             sendSid:res.data[0].sid,//发单人学号
+            takeSid:null,
+            businessnum:"121289893",//商家号
           }
         }).then(res => {
           wx.showToast({

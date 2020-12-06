@@ -26,7 +26,7 @@
   justify-content: center; 
   letter-spacing: 1px;
   font-family:MingLiU;
-  font-weight: bold;
+  font-weight: 550;
 }
 
 .img1 {

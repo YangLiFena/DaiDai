@@ -133,39 +133,30 @@ Page({
       }
     })
   },
-  //接单
   takeOrder: function (options) {
     var that=this
     var id = options.currentTarget.dataset.id;
     console.log(id);
     var myid=app.globalData.OPEN_ID
-    db.collection('Users').where({
-      _openid:app.globalData.OPEN_ID
-    }).get({
-      success:function(res){
-        var sno=res.data[0].sid//接单人学号
-        db.collection('print').doc(id).update({
-          data: {
-            status: "已接单",
-            orderTaker:myid,//接单人openid
-            takeSid:sno,
-          },
-          success: function(res) {
-            wx.showModal({
-              title: '提示',
-              content: '接单成功！',
-              showCancel:false,
-              success: function (res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
-                  that.onLoad()//刷新页面
-                }
-              }
-            })
-          }
-        })
+    db.collection('print').doc(id).update({
+      data: {
+        status: "已接单",
+        orderTaker:myid
+      },
+      success: function(res) {
+        console.log(res)
       }
-
+    })
+    wx.showModal({
+      title: '提示',
+      content: '接单成功！',
+      showCancel:false,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.onLoad()//刷新页面
+        }
+      }
     })
   },
   contact: function() {

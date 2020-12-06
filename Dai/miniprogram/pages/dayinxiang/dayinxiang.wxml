@@ -20,13 +20,17 @@
         <van-cell title="打印份数" value="{{ tasks2.num }}">
         </van-cell>
       </view>
-      <view class="beizhu">
-          <view class="text111">
-            <text>订单备注</text>
-              <view class="line2"></view>
+      <view>
+        <view class="page-section">
+          <view class="page-section-title"></view>
+          <view class="textarea-wrp">
+            <textarea disabled value="订单备注" auto-focus="true" style="height: 7em">
+              <view class="line1"></view>
               <view class="message">
-                <text>{{tasks2.message}}</text>
+                {{ tasks2.message }}
               </view>
+            </textarea>
           </view>
   </view>
+</view>
     </view>

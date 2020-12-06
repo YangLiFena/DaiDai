@@ -25,7 +25,7 @@ input{
 button{
   width: 80%;
   margin-top: 30rpx;
-  background-color:#FF4444;
+  background-color: #696969;
   color: #fff;
 }
 .placeholder{

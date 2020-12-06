@@ -7,8 +7,8 @@ Page({
        * 页面的初始数据
        */
       data: {
-            weixin: "c1765021427",
-            qq: "312800606",
+            weixin: "wxid_up2bruqdf61322",
+            qq: "1045929609",
             //gzh: JSON.parse(config.data).kefu.gzh,
             //phone: JSON.parse(config.data).kefu.phone,
             //banner: "/photo/1.png"
