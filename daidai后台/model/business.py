@@ -2,6 +2,7 @@
 import sys
 import time
 import os
+import pandas as pd
 import requests
 from PyQt5.QtWidgets import (QApplication, QWidget, QGridLayout, QGroupBox,
                              QToolButton, QSplitter, QVBoxLayout, QHBoxLayout,
@@ -217,25 +218,21 @@ class OrderManage(QGroupBox):
         self.searchButton.setFixedSize(100, 40)
         self.searchButton.setText('搜索')
         self.searchButton.clicked.connect(self.searchFunction)
+        self.toCsvButton = QToolButton()
+        self.toCsvButton.setFixedSize(100, 40)
+        self.toCsvButton.setText('导出')
+        self.toCsvButton.clicked.connect(self.toCsvFunction)
         searchLayout = QHBoxLayout()
         searchLayout.addStretch()
         searchLayout.addWidget(self.searchTitle)
         searchLayout.addWidget(self.searchInput)
         searchLayout.addWidget(self.searchButton)
+        searchLayout.addWidget(self.toCsvButton)
         searchLayout.addStretch()
         self.searchWidget = QWidget()
         self.searchWidget.setLayout(searchLayout)
         self.body.addWidget(self.searchWidget)
 
-    # 搜索方法
-    # def searchFunction(self):
-    #     convert = {'书号': 'BID', '分类': 'CLASSIFICATION', '出版社': 'PRESS', '作者': 'AUTHOR', '书名': 'BNAME', '': 'BNAME'}
-    #     self.book_list = database.search_book(self.searchInput.text(), convert[self.selectBox.currentText()])
-    #     if self.book_list == []:
-    #         print('未找到')
-    #     if self.table is not None:
-    #         self.table.deleteLater()
-    #     self.setTable()
 
     def searchFunction(self):
         # print('111点击搜索，待添加')
@@ -246,6 +243,20 @@ class OrderManage(QGroupBox):
             self.table.deleteLater()
         self.searchInput.setText('')
         self.setTable()
+
+    def toCsvFunction(self):
+        data = []
+        for i in range(len(self.good_list)):
+            temp = []
+            for j in range((len(self.good_list[i]) - 1)):
+                temp.append(self.good_list[i][j])
+            for j in range(len(self.good_info[i])):
+                temp.append(self.good_info[i][j])
+            temp.append(self.good_list[i][0][:5] + '_' + self.good_list[i][1])
+            data.append(temp)
+        print(data)
+        new_data = pd.DataFrame(data=data, columns=['订单号', '发单人学号', '订单状态', '纸张类型', '打印颜色', '打印方式', '打印份数', '备注', '文件位置'])
+        new_data.to_csv('商家订单.csv', index=False, encoding='GBK')
 
     # 设置表格
     def setTable(self):
@@ -409,7 +420,7 @@ class OrderManage(QGroupBox):
         msgBox.addButton("确认", QMessageBox.AcceptRole)
         msgBox.addButton("取消", QMessageBox.RejectRole)
         if msgBox.exec_() == QMessageBox.AcceptRole:
-            path = val[0] + '_' + val[1]
+            path = val[0][:5] + '_' + val[1]
             isExists = os.path.exists(path)
             if not isExists:
                 os.makedirs(path)
@@ -475,6 +486,15 @@ class OrderManage(QGroupBox):
                 font-family: 微软雅黑;
             }
         ''')
+        self.toCsvButton.setStyleSheet('''
+                    QToolButton{
+                        border-radius: 10px;
+                        background-color:rgba(52, 118, 176, 1);
+                        color: white;
+                        font-size: 25px;
+                        font-family: 微软雅黑;
+                    }
+                ''')
 
 
 if __name__ == '__main__':

@@ -91,7 +91,7 @@ class GoodOrderInfo(QGroupBox):
 
         self.scoreInput = QLineEdit()
         self.scoreInput.setFixedSize(400, 40)
-        self.scoreInput.setText('用户评分：' + self.good_info['SCORE'])
+        self.scoreInput.setText('用户评分：' + str(self.good_info['SCORE']))
         self.scoreInput.setEnabled(False)
 
 

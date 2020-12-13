@@ -22,7 +22,7 @@ class DataBase():
         if sno == '':
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'print'
+            collection_name = 'test4'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
             query1 = "db.collection('%s').limit(100).get()" % (collection_name)
             data1 = {
@@ -46,14 +46,14 @@ class DataBase():
         else:
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'print'
+            collection_name = 'test4'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
-            query1 = "db.collection('%s').where({sendSid: '%s'}).limit(100).get()" % (collection_name, sno)
+            query1 = "db.collection('%s').where({putSno: '%s'}).limit(100).get()" % (collection_name, sno)
             data1 = {
                 "env": ENV,
                 "query": query1
             }
-            query2 = "db.collection('%s').where({takeSid: '%s'}).limit(100).get()" % (collection_name, sno)
+            query2 = "db.collection('%s').where({getSno: '%s'}).limit(100).get()" % (collection_name, sno)
             data2 = {
                 "env": ENV,
                 "query": query2
@@ -73,57 +73,33 @@ class DataBase():
         for item in all_data1:
             item_data = json.loads(item)
             temp1 = []
-            temp1.append(item_data['_id'])
-            if 'sendSid' in item_data.keys():
-                temp1.append(item_data['sendSid'])
-            else:
-                temp1.append('')
-            if 'takeSid' in item_data.keys():
-                temp1.append(item_data['takeSid'])
-            else:
-                temp1.append('')
-            # temp1.append(item_data['sendSid'])
-            # temp1.append(item_data['takeSid'])
-            temp1.append(item_data['orderType'])
+            temp1.append(item_data['orderId'])
+            temp1.append(item_data['putSno'])
+            temp1.append(item_data['getSno'])
+            temp1.append(item_data['type'])
             temp1.append(item_data['status'])
             good_list.append(temp1)
             # print(temp)
             temp2 = []
-            if item_data['orderType'] == '带货':
+            if item_data['type'] == '带货':
                 temp2.append(item_data['good'])
-                temp2.append(item_data['from']['name'])
-                temp2.append(item_data['to']['name'])
+                temp2.append(item_data['putAddr'])
+                temp2.append(item_data['getAddr'])
                 temp2.append(item_data['date'])
                 temp2.append(item_data['money'])
                 temp2.append(item_data['credit'])
                 temp2.append(item_data['message'])
-                if 'commentText' in item_data.keys():
-                    temp2.append(item_data['commentText'])
-                else:
-                    temp2.append('')
-                if 'commentPoint' in item_data.keys():
-                    temp2.append(item_data['commentPoint'])
-                else:
-                    temp2.append('')
-                # temp2.append(item_data['evaluate'])
-                # temp2.append(item_data['score'])
-            elif item_data['orderType'] == '带人':
-                temp2.append(item_data['from']['name'])
-                temp2.append(item_data['to']['name'])
+                temp2.append(item_data['evaluate'])
+                temp2.append(item_data['score'])
+            elif item_data['type'] == '带人':
+                temp2.append(item_data['putAddr'])
+                temp2.append(item_data['getAddr'])
                 temp2.append(item_data['date'])
                 temp2.append(item_data['money'])
                 temp2.append(item_data['credit'])
                 temp2.append(item_data['message'])
-                if 'commentText' in item_data.keys():
-                    temp2.append(item_data['commentText'])
-                else:
-                    temp2.append('')
-                if 'commentPoint' in item_data.keys():
-                    temp2.append(item_data['commentPoint'])
-                else:
-                    temp2.append('')
-                # temp2.append(item_data['evaluate'])
-                # temp2.append(item_data['score'])
+                temp2.append(item_data['evaluate'])
+                temp2.append(item_data['score'])
             else:
                 temp2.append(item_data['size'])
                 temp2.append(item_data['color'])
@@ -139,57 +115,33 @@ class DataBase():
         for item in all_data2:
             item_data = json.loads(item)
             temp1 = []
-            temp1.append(item_data['_id'])
-            if 'sendSid' in item_data.keys():
-                temp1.append(item_data['sendSid'])
-            else:
-                temp1.append('')
-            if 'takeSid' in item_data.keys():
-                temp1.append(item_data['takeSid'])
-            else:
-                temp1.append('')
-            # temp1.append(item_data['sendSid'])
-            # temp1.append(item_data['takeSid'])
-            temp1.append(item_data['orderType'])
+            temp1.append(item_data['orderId'])
+            temp1.append(item_data['putSno'])
+            temp1.append(item_data['getSno'])
+            temp1.append(item_data['type'])
             temp1.append(item_data['status'])
             good_list.append(temp1)
             # print(temp)
             temp2 = []
-            if item_data['orderType'] == '带货':
+            if item_data['type'] == '带货':
                 temp2.append(item_data['good'])
-                temp2.append(item_data['from']['name'])
-                temp2.append(item_data['to']['name'])
+                temp2.append(item_data['getAddr'])
+                temp2.append(item_data['putAddr'])
                 temp2.append(item_data['date'])
                 temp2.append(item_data['money'])
                 temp2.append(item_data['credit'])
                 temp2.append(item_data['message'])
-                if 'commentText' in item_data.keys():
-                    temp2.append(item_data['commentText'])
-                else:
-                    temp2.append('')
-                if 'commentPoint' in item_data.keys():
-                    temp2.append(item_data['commentPoint'])
-                else:
-                    temp2.append('')
-                # temp2.append(item_data['evaluate'])
-                # temp2.append(item_data['score'])
-            elif item_data['orderType'] == '带人':
-                temp2.append(item_data['from']['name'])
-                temp2.append(item_data['to']['name'])
+                temp2.append(item_data['evaluate'])
+                temp2.append(item_data['score'])
+            elif item_data['type'] == '带人':
+                temp2.append(item_data['getAddr'])
+                temp2.append(item_data['putAddr'])
                 temp2.append(item_data['date'])
                 temp2.append(item_data['money'])
                 temp2.append(item_data['credit'])
                 temp2.append(item_data['message'])
-                if item_data['commentText'] is not None:
-                    temp2.append(item_data['commentText'])
-                else:
-                    temp2.append('')
-                if item_data['commentPoint'] is not None:
-                    temp2.append(item_data['commentPoint'])
-                else:
-                    temp2.append('')
-                # temp2.append(item_data['evaluate'])
-                # temp2.append(item_data['score'])
+                temp2.append(item_data['evaluate'])
+                temp2.append(item_data['score'])
             else:
                 temp2.append(item_data['size'])
                 temp2.append(item_data['color'])
@@ -208,9 +160,9 @@ class DataBase():
         print(orderId)
         accessToken = self.get_access_token(self)
         # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-        collection_name = 'print'
+        collection_name = 'test4'
         url = '{0}tcb/databasedelete?access_token={1}'.format(WECHAT_URL, accessToken)
-        query = "db.collection('%s').where({_id: '%s'}).remove()" % (collection_name, orderId)
+        query = "db.collection('%s').where({orderId: '%s'}).remove()" % (collection_name, orderId)
         data = {
             "env": ENV,
             "query": query
@@ -231,7 +183,7 @@ class DataBase():
         if sno == '':
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'Users'
+            collection_name = 'test5'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
             query = "db.collection('%s').limit(100).get()" % (collection_name)
             data = {
@@ -242,9 +194,9 @@ class DataBase():
         else:
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'Users'
+            collection_name = 'test5'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
-            query = "db.collection('%s').where({sid: '%s'}).limit(100).get()" % (collection_name, sno)
+            query = "db.collection('%s').where({sno: '%s'}).limit(100).get()" % (collection_name, sno)
             data = {
                 "env": ENV,
                 "query": query
@@ -257,13 +209,10 @@ class DataBase():
         for item in data:
             item_data = json.loads(item)
             temp = []
-            temp.append(item_data['sid'])
-            temp.append(item_data['sname'])
-            if item_data['sex'] == 1:
-                temp.append('男')
-            elif item_data['sex'] == 2:
-                temp.append('女')
+            temp.append(item_data['sno'])
             temp.append(item_data['name'])
+            temp.append(item_data['gender'])
+            temp.append(item_data['nickname'])
             temp.append(item_data['credit'])
             user_list.append(temp)
         return user_list
@@ -277,9 +226,9 @@ class DataBase():
         # sno = '031802318'
         accessToken = self.get_access_token(self)
         # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-        collection_name = 'Users'
+        collection_name = 'test5'
         url = '{0}tcb/databaseupdate?access_token={1}'.format(WECHAT_URL, accessToken)
-        query = "db.collection('%s').where({sid: '%s'}).update({data: {credit: %d}})" % (collection_name, sno, credit)
+        query = "db.collection('%s').where({sno: '%s'}).update({data: {credit: %d}})" % (collection_name, sno, credit)
         data = {
             "env": ENV,
             "query": query
@@ -297,9 +246,9 @@ class DataBase():
     def delete_user(self, sno):
         accessToken = self.get_access_token(self)
         # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-        collection_name = 'Users'
+        collection_name = 'test5'
         url = '{0}tcb/databasedelete?access_token={1}'.format(WECHAT_URL, accessToken)
-        query = "db.collection('%s').where({sid: '%s'}).remove()" % (collection_name, sno)
+        query = "db.collection('%s').where({sno: '%s'}).remove()" % (collection_name, sno)
         data = {
             "env": ENV,
             "query": query
@@ -405,9 +354,9 @@ class DataBase():
         if sno == '':
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'print'
+            collection_name = 'test4'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
-            query1 = "db.collection('%s').where({orderType: '打印', status: '待接单'}).limit(100).get()" % (collection_name)
+            query1 = "db.collection('%s').where({type: '打印', status: '待完成'}).limit(100).get()" % (collection_name)
             data1 = {
                 "env": ENV,
                 "query": query1
@@ -417,9 +366,9 @@ class DataBase():
         else:
             accessToken = self.get_access_token(self)
             # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-            collection_name = 'print'
+            collection_name = 'test4'
             url = '{0}tcb/databasequery?access_token={1}'.format(WECHAT_URL, accessToken)
-            query1 = "db.collection('%s').where({sendSid: '%s', orderType: '打印', status: '待接单'}).limit(100).get()" % (collection_name, sno)
+            query1 = "db.collection('%s').where({putSno: '%s', type: '打印', status: '待完成'}).limit(100).get()" % (collection_name, sno)
             data1 = {
                 "env": ENV,
                 "query": query1
@@ -432,8 +381,8 @@ class DataBase():
             item_data = json.loads(item)
             # print(item_data)
             temp1 = []
-            temp1.append(item_data['_id'])
-            temp1.append(item_data['sendSid'])
+            temp1.append(item_data['orderId'])
+            temp1.append(item_data['putSno'])
             temp1.append(item_data['status'])
             temp1.append(item_data['file'])
             good_list.append(temp1)
@@ -449,6 +398,8 @@ class DataBase():
     @classmethod
     def get_file(self, src_list):
         accessToken = self.get_access_token(self)
+        # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
+        collection_name = 'StudentCard'
         url = '{0}tcb/batchdownloadfile?access_token={1}'.format(WECHAT_URL, accessToken)
         file_list = []
         for item in src_list:
@@ -456,7 +407,6 @@ class DataBase():
             temp['fileid'] = item
             temp['max_age'] = 7200
             file_list.append(temp)
-        print(file_list)
         data = {
             "env": ENV,
             'file_list': file_list
@@ -485,9 +435,9 @@ class DataBase():
     def print_finish(self, orderId):
         accessToken = self.get_access_token(self)
         # accessToken = '39_9tXYaluroLAq2XQAB7S0wbl9LmaveP5zbjdc9njBqp8ix5xCA_3rAOkec6zN9WftySU3cECYuhKy5yi5q2nyQiJbQNAefGPD7TJtLwHqHRkl4RF5VyrHlh68qK--gzPBcbunQLnLMF6OAk3ZUPOcABAPKJ'
-        collection_name = 'print'
+        collection_name = 'test4'
         url = '{0}tcb/databaseupdate?access_token={1}'.format(WECHAT_URL, accessToken)
-        query = "db.collection('%s').where({_id: '%s'}).update({data: {status: '已完成'}})" % (collection_name, orderId)
+        query = "db.collection('%s').where({orderId: '%s'}).update({data: {status: '已完成'}})" % (collection_name, orderId)
         data = {
             "env": ENV,
             "query": query
@@ -501,29 +451,29 @@ class DataBase():
         else:
             return False
 
-    # @classmethod
-    # def call_cloud_function(self, id):
-    #     print(id)
-    #     accessToken = self.get_access_token(self)
-    #     url = 'https://api.weixin.qq.com/tcb/invokecloudfunction'
-    #     # url = '{0}tcb/invokecloudfunction?access_token={1}'.format(WECHAT_URL, accessToken)
-    #     data = {
-    #         'openid': id
-    #     }
-    #     params = {
-    #         'access_token': accessToken,
-    #         'env': ENV,
-    #         'name': 'access',
-    #     }
-    #     # query = "db.collection('%s').where({sno: '%s'}).update({data: {credit: %d}})" % (collection_name, sno, credit)
-    #     # data = {
-    #     #     "env": ENV,
-    #     #     'name': 'access',
-    #     # }
-    #     response = requests.post(url, params=params, json=data)
-    #     print(response)
-    #     data = response.json()
-    #     print(data)
+    @classmethod
+    def call_cloud_function(self, id):
+        print(id)
+        accessToken = self.get_access_token(self)
+        url = 'https://api.weixin.qq.com/tcb/invokecloudfunction'
+        # url = '{0}tcb/invokecloudfunction?access_token={1}'.format(WECHAT_URL, accessToken)
+        data = {
+            'openid': id
+        }
+        params = {
+            'access_token': accessToken,
+            'env': ENV,
+            'name': 'access',
+        }
+        # query = "db.collection('%s').where({sno: '%s'}).update({data: {credit: %d}})" % (collection_name, sno, credit)
+        # data = {
+        #     "env": ENV,
+        #     'name': 'access',
+        # }
+        response = requests.post(url, params=params, json=data)
+        print(response)
+        data = response.json()
+        print(data)
 
     @classmethod
     def search_feedback(self, sno):
