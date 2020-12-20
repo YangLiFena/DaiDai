@@ -140,14 +140,16 @@ class DataBase():
             item_data = json.loads(item)
             temp1 = []
             temp1.append(item_data['_id'])
-            if 'sendSid' in item_data.keys():
-                temp1.append(item_data['sendSid'])
-            else:
-                temp1.append('')
+            # 以下要加
+            # if 'sendSid' in item_data.keys():
+            #     temp1.append(item_data['sendSid'])
+            # else:
+            #     temp1.append('')
+            temp1.append(item_data['sendSid'])
             if 'takeSid' in item_data.keys():
                 temp1.append(item_data['takeSid'])
-            else:
-                temp1.append('')
+            # else:
+            #     temp1.append('')
             # temp1.append(item_data['sendSid'])
             # temp1.append(item_data['takeSid'])
             temp1.append(item_data['orderType'])
@@ -180,11 +182,11 @@ class DataBase():
                 temp2.append(item_data['money'])
                 temp2.append(item_data['credit'])
                 temp2.append(item_data['message'])
-                if item_data['commentText'] is not None:
+                if 'commentText' in item_data.keys():
                     temp2.append(item_data['commentText'])
-                else:
-                    temp2.append('')
-                if item_data['commentPoint'] is not None:
+                # else:
+                #     temp2.append('')
+                if 'commentPoint' in item_data.keys():
                     temp2.append(item_data['commentPoint'])
                 else:
                     temp2.append('')
