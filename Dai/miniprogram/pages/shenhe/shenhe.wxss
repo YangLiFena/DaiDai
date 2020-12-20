@@ -1,0 +1,28 @@
+/* pagesenheenhe.wxss */
+.all{
+  height: 100%;
+}
+.container {
+padding-top:15% ;
+  width: 100%;
+  /* display: flex; */
+  /* background-color:#467FE7; */
+}
+
+.gif {
+  /* display: flex; */
+  /*position: fixed;*/
+  /*top: 8%;*/
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-weight: bold;
+  /* padding: 20rpx; */
+}
+
+.container2{
+  position: absolute;
+  bottom: 2%;
+  height: 38%;
+  width: 100%;
+}

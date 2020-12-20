@@ -1,0 +1,75 @@
+<view class="top1">
+  <text class="top2">代打印</text>
+</view>
+<form bindsubmit="onSubmit" report-submit="{{true}}">
+  <view class="section">
+    <block>
+      <van-cell title="纸张大小" is-link>
+        <picker bindchange="optchange1" value="{{index1}}" range="{{array1}}">
+          <view class="picker">
+            当前选择：{{array1[index1]}}
+          </view>
+        </picker>
+      </van-cell>
+    </block>
+  </view>
+
+  <view class="section">
+    <block>
+      <van-cell title="单/双面打印" is-link>
+        <picker bindchange="optchang2" value="{{index2}}" range="{{array2}}">
+          <view class="picker">
+            当前选择：{{array2[index2]}}
+          </view>
+        </picker>
+      </van-cell>
+    </block>
+  </view>
+
+  <view class="section">
+    <block>
+      <van-cell title="黑白/彩色打印" is-link>
+        <picker bindchange="optchange3" value="{{index3}}" range="{{array3}}">
+          <view class="picker">
+            当前选择：{{array3[index3]}}
+          </view>
+        </picker>
+      </van-cell>
+    </block>
+  </view>
+
+  <view>
+    <van-field value="{{printNum}}" placeholder="请输入打印份数" bind:blur="optchange4" label="打印份数" input-align="right">
+    </van-field>
+  </view>
+
+  <view>
+    <view class="page-section">
+      <view class="page-section-title"></view>
+      <view class="textarea-wrp">
+        <textarea value="{{message}}" auto-focus="true" maxlength="200" style="height: 7em" placeholder="请输入留言" bindblur="optchange5"/>
+      </view>
+  </view>
+</view>
+</form>
+
+<view class="line"></view>
+
+<view class="text2">
+  <text class="text">您至多可以选择10个文件</text>
+</view>
+
+<van-row>
+  <van-col>
+    <van-button icon="add" type="primary" bindtap='selectFile' class="button">选择文件</van-button>
+  </van-col>
+  <view class="icon">
+  <van-col offset="1">
+    <van-icon name="{{ok}}" size="30px"></van-icon>
+  </van-col>
+</view>
+</van-row>
+
+<view>
+  <van-submit-bar price="" label="" suffix-label="" button-text="提交订单" bind:submit="onSubmit"></van-submit-bar>
+</view>

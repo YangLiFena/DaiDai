@@ -1,0 +1,20 @@
+<view wx:for="{{tasks}}" class="pad" bindtap="back">
+  <!-- <navigator url="../im/room/room"> -->
+  <view bindtap="urlTurn">
+  <van-row>
+    <van-col>
+      <image class="avatar" src="{{ item.avatar }}"></image>
+    </van-col>
+
+    <van-col span="15">
+    <view class="name">
+      <van-row>
+        <text class="textName">{{ item.nickName }}</text>
+      </van-row>
+    </view>
+    </van-col>
+  </van-row>
+  <view class="line2"></view>
+</view>
+<!-- </navigator> -->
+</view>

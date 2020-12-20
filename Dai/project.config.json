@@ -1,0 +1,177 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "appid": "wx4184fe0dc5886089",
+  "projectname": "printpaper2",
+  "libVersion": "2.8.1",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "dairen",
+          "pathName": "pages/dairen/dairen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daifan",
+          "pathName": "pages/daifan/daifan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pingjia",
+          "pathName": "pages/pingjia/pingjia",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renwuhuo",
+          "pathName": "pages/renwuhuo/renwuhuo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "tousu",
+          "pathName": "pages/tousu/tousu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renyuan",
+          "pathName": "pages/renyuan/renyuan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daihuoxiang",
+          "pathName": "pages/daihuoxiang/daihuoxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "dairenxiang",
+          "pathName": "pages/dairenxiang/dairenxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "dayinxiang",
+          "pathName": "pages/dayinxiang/dayinxiang",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "login_",
+          "pathName": "pages/login_/login_",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "alltasks",
+          "pathName": "pages/alltasks/alltasks",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "renzheng",
+          "pathName": "pages/renzheng/renzheng",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "daying",
+          "pathName": "pages/daying/daying",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "im",
+          "pathName": "pages/im/im",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "fabu",
+          "pathName": "pages/fabu/fabu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "commentDetail",
+          "pathName": "pages/commentDetail/commentDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "shenhe",
+          "pathName": "pages/shenhe/shenhe",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "identity",
+          "pathName": "pages/identity/identity",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

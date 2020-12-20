@@ -1,0 +1,43 @@
+<view class="pad">
+  <text class="textTop">投诉</text>
+</view>
+<view class="line"></view>
+
+<view class="section">
+  <van-cell title="请选择投诉对象" is-link bind:click="urlTurn" value="{{people}}"></van-cell>
+  <van-cell title="请选择投诉类型" is-link>
+    <picker bindchange="optchange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        {{ array[index] }}
+      </view>
+    </picker>
+  </van-cell>
+</view>
+
+<view class="line"></view>
+
+<view class="section">
+  <view class="juli">
+    <text class="textTop">图片证据</text>
+  </view>
+  <view class="background">
+  <van-uploader file-list="{{ fileList }}" preview-size="80px" bind:after-read="afterRead"></van-uploader>
+</view>
+</view>
+
+<view class="line"></view>
+
+<view class="section">
+  <text class="textTop">投诉补充内容</text>
+</view>
+
+<view class="section2">
+    <view class="page-section">
+      <view class="page-section-title"></view>
+      <view class="textarea-wrp">
+        <textarea value="{{message}}" auto-focus="true" style="height: 7em" placeholder="请补充您的要求" bindblur="optchange"/>
+      </view>
+  </view>
+</view>
+
+<van-button type="primary" size="large" bind:click="onSubmit">提交</van-button>

@@ -1,0 +1,15 @@
+<view class="all">
+<view class="container">
+  <view class="gif">
+  <image class="ph" src="/photo/timg.gif" style="width:115%;height:500rpx"></image>
+  
+  <text>正在快马加鞭进行审核，请耐心等待哦！</text>
+  
+  </view>
+
+</view>
+
+<view class="container2" >
+  <image class="ph2" src="/photo/timg3.gif" style="width:100%;height:500rpx"></image>
+</view>
+</view>

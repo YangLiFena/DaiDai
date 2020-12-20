@@ -1,0 +1,117 @@
+/* pages/login/login.wxss */
+page {
+
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  
+}
+
+.header {
+  color: rgb(158, 157, 157);
+  font-size: large;
+  text-align: center;
+}
+
+.avatar {
+  height: 190rpx;
+  width: 190rpx;
+  flex-shrink: 0;
+}
+
+.avatar_1 {
+  height: 80rpx;
+  width: 300rpx;
+
+  flex-shrink: 0;
+}
+
+.avatar_2 {
+  height: 2rpx;
+  width: 2rpx;
+  flex-shrink: 0;
+}
+
+button {
+  background-color: rgb(103, 170, 64);
+  color: white;
+  font-size: medium;
+  font-weight: 500 !important;
+  height: 70rpx !important;
+  width: 500rpx !important;
+  line-height: 60rpx !important;
+  border-radius: 40rpx !important;
+  padding: 5rpx 20rpx !important;
+}
+
+button.hover {
+  background-color: rgb(20, 141, 255);
+  color: rgb(104, 165, 92);
+  font-weight: 900 !important;
+}
+
+.access {
+  height: 100rpx;
+  width: 500rpx;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.access > text {
+  font-size: 24rpx;
+  font-weight: 100;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.choice image {
+  background-color: white;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  padding: 5rpx;
+  margin: 12rpx;
+}
+
+.choice text {
+  color: white;
+  font-size: 20rpx;
+}
+
+form {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+input {
+  height: 60rpx;
+  width: 400rpx;
+  border: 5rpx solid rgb(45, 255, 157);
+  border-radius: 40rpx;
+  padding: 5rpx 40rpx;
+  margin: 40rpx;
+}

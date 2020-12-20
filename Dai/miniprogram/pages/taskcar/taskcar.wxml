@@ -1,0 +1,56 @@
+<import src="/pages/util/util.wxml" />
+<view hidden="{{personal}}">
+  <template is="personal" data="{{userInfo}}"></template>
+</view>
+<view>
+  <view>
+<view class="scroll_view_horizotal">
+    <view id="item" class="item" style="{{quanbu}};" catchtap="item" data-item="quanbu">
+      全部
+    </view>
+    <view id="item" class="item" style="{{daiban}};" catchtap="item" data-item="daiban">正在进行</view>
+     <view id="item" class="item"  style="{{send}}; "catchtap="item" data-item="send">已发布</view>
+    <view id="item" class="item"  style="{{end}};" catchtap="item" data-item="end">已完成</view>
+    <view id="item" class="item"  style="{{daipingjia}};" catchtap="item" data-item="daipingjia">待评价</view>
+</view>
+</view>
+  <block wx:for="{{data}}">
+    <view class="titleHead">
+      <text class="orderType">{{item.orderType}}</text>
+      <image src="/photo/cancel.png" bindtap="cancel" data-id="{{item._id}}"></image>
+    </view>
+    <view class="element">
+      <view class="head">
+        <view class="avatar" bindtap="personal">
+          <image src="{{item.avatarUrl}}" />
+        </view>
+        <view class="nickName">
+          <text>{{item.nickName}}</text>
+        </view>
+      </view>
+      <view class="msg">
+        <view class="content">
+          <text>{{item.details}}</text>
+        </view>
+      </view>
+      <view class="date">
+        <text>期望时间：{{item.date}} {{item.time}}</text>
+      </view>
+      <view class="status">
+        <text>{{item.status}}</text>
+      </view>
+    </view>
+    <view class="moneyView">
+      <view>
+      <text>备注：{{item.message}}</text>
+      <text class="xingshi">赏金:{{item.money}}元</text>
+      </view>
+    </view>
+    <view class="buttonView">
+      <button class="button" bindtap="detail" data-id="{{item._id}}">详情</button>
+      <button class="button" bindtap="contact">联系</button>
+      <button class="button" bindtap="complete" data-id="{{item._id}}">完成</button>
+      <button class="button" bindtap="comment" data-id="{{item._id}}">评价</button>
+  </view>
+  </block>
+</view>

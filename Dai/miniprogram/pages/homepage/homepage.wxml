@@ -1,0 +1,30 @@
+<!--轮播图 开始-->
+
+<view>
+  <swiper autoplay indicator-dots circular style="height:500rpx" >
+    <swiper-item>
+      <image src='/photo/mod.png' style="width:100%;height:500rpx"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='/photo/guanggao.png' style="width:100%;height:500rpx"></image>
+    </swiper-item>
+  </swiper>
+</view>
+<!--轮播图 结束-->
+
+<!--导航 开始-->
+<view class="home_cate">
+  <view class="img" bindtap="jmpAllTasksPage" >
+    <image mode="widthFix"  src="/photo/rwdt.png"></image>
+    <text class="rwtxt">任务大厅</text>      
+  </view>
+  <view class="img1" bindtap="jmpFaBuPage" >
+    <image mode="widthFix"  src="/photo/rwfb.png"></image>  
+    <text class="fbtxt">任务发布</text>        
+  </view>
+  <view class="img2" bindtap="jmpAsksPage" >
+    <image mode="widthFix"  src="/photo/zxkf.png"></image> 
+    <text class="kftxt">在线客服</text>         
+  </view>
+</view>
+<!--导航 开始-->

@@ -1,0 +1,47 @@
+<view class="top1">
+  <text class="top2">带人</text>
+</view>
+
+<view class="section">
+  <van-cell title="出发地" is-link bind:click="chooseLocation1" icon="location" value="{{locationObj1.name}}">
+  </van-cell>
+</view>
+<view class="section">
+  <van-cell title="目的地" is-link bind:click="chooseLocation2" icon="location" value="{{locationObj2.name}}">
+  </van-cell>
+</view>
+<view class="section">
+  <van-cell title="出行日期" is-link>
+    <picker mode="date" value="{{date}}" start="2020-01-01" end="2023-01-01" bindchange="bindDateChange">
+    <view class="picker">
+      {{date}}
+    </view>
+  </picker>
+  </van-cell>
+</view>
+<view class="section">
+  <van-cell title="出行时间" is-link>
+  <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+    <view class="picker">
+      {{time}}
+    </view>
+  </picker>
+  </van-cell>
+</view>
+<view>
+    <van-field value="{{money}}" placeholder="请输入打赏费用（元）" bind:blur="optchange" label="打赏费用" input-align="right">
+    </van-field>
+  </view>
+  <view>
+    <van-field value="{{credit}}" placeholder="请输入接单最低信誉积分" bind:blur="optchange4" label="信誉积分" input-align="right">
+    </van-field>
+  </view>
+  <view>
+    <view class="page-section">
+      <view class="page-section-title"></view>
+      <view class="textarea-wrp">
+        <textarea value="{{message}}" auto-focus="true" maxlength="200" style="height: 7em" placeholder="请补充您的要求" bindblur="optchange5"/>
+      </view>
+  </view>
+</view>
+  <van-submit-bar price="{{t}}" button-text="提交订单" bind:submit="onSubmit"/>

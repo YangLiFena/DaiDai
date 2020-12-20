@@ -1,0 +1,79 @@
+page {
+  background-color: #F8F8F8;
+}
+
+.submit {
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid gainsboro;
+  color: black;
+}
+
+.buttonView {
+  position: fixed;
+  bottom: 400px;
+  width: 100%;
+}
+.buttonView1 {
+  position: fixed;
+  bottom: 300px;
+  width: 100%;
+}
+.buttonView2 {
+  position: fixed;
+  bottom: 200px;
+  width: 100%;
+}
+.zi1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .zi1 .tishi {
+    color: #616060;
+    font-size: 35rpx;
+    margin-top: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+.icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 auto;
+  margin-top: 15rpx;
+  margin-bottom:150rpx; 
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 1px #DCDCDC;
+}
+
+.top1 {
+  padding-top: 30%;
+  font-size: 46rpx;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.top2 {
+  height: 150rpx;
+  color: #888888;
+}
+
+.button {
+  padding-top: 10%;
+  margin: 0 auto;
+  width: 65%;
+}
+
+.button1 {
+  padding: 10%;
+  width: 65%;
+}
+
+.abc {
+  width: 100%;
+  border-radius: 10px;
+  /* border: 2px solid gainsboro; */
+}
